@@ -1,2 +1,2 @@
-# Wellness-Companion
+# Curecorner
 Capstone Group Project(Web Development)
