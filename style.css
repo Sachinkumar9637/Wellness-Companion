@@ -1,0 +1,109 @@
+body{
+    margin: 0;
+    width: 100%;
+    font-family: 'Kaisei Opti';
+    box-sizing: border-box;
+}
+
+/*Login Page*/
+.login-container{
+    display: flex;
+}
+.login-image{
+    flex: 35%;
+}
+.login-image > img{
+    width: 100%;
+    height: 830px;
+}
+.login-text{
+    flex: 65%;
+    text-align: center;
+    line-height: 50px;
+    margin-top: 50px;
+}
+.login-text > h1{
+    font-size: 55px;
+}
+.login-form{
+    padding: 8px 260px;
+}
+.login-form > h3{
+    font-size: 30px;
+}
+.login-form > a{
+    color: #1F426B;
+    font-size: 17px;
+}
+.login-form > a:hover{
+    color: #142a43;
+    font-weight: bold;
+}
+.login-form > input[type=email], input[type=password] {
+    width: 100%;
+    padding: 15px 20px;
+    margin: 18px 0;
+    border-radius: 4px;
+    border: 2px solid silver;
+}
+
+.login-form > input[type=submit]{
+    width: 50%;
+    background-color: #1F426B;
+    color: white;
+    padding: 14px 20px;
+    margin: 40px 0 0 0;
+    font-size: 20px;
+    border-radius: 6px;
+}
+.login-form > input[type=submit]:hover{
+    background-color: #142a43;
+}
+
+
+/*Forgot Passsword Page*/
+.fpassword-container{
+    display: flex;
+}
+.fpassword-image{
+    flex: 35%;
+}
+.fpassword-image > img{
+    width: 100%;
+    height: 830px;
+}
+.fpassword-text{
+    flex: 65%;
+    text-align: center;
+    line-height: 50px;
+    margin-top: 50px;
+}
+.fpassword-text > h1{
+    font-size: 55px;
+}
+.fpassword-form{
+    padding: 68px 100px;
+}
+.fpassword-form > h3{
+    font-size: 22px;
+}
+.fpassword-form > input[type=email] {
+    width: 80%;
+    padding: 15px 20px;
+    margin: 18px 0;
+    border-radius: 4px;
+    border: 2px solid silver;
+}
+
+.fpassword-form > input[type=submit]{
+    width: 40%;
+    background-color: #1F426B;
+    color: white;
+    padding: 14px 20px;
+    margin: 90px 0 0 0;
+    font-size: 20px;
+    border-radius: 6px;
+}
+.fpassword-form > input[type=submit]:hover{
+    background-color: #142a43;
+}
