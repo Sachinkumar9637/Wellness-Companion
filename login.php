@@ -8,6 +8,7 @@
     <link href='https://fonts.googleapis.com/css?family=Kaisei Opti' rel='stylesheet'>
 </head>
 <body>
+    <?php include 'header.php';?>
     <div class="login-container">
         <div class="login-image">
             <img src="Images/home.png">
@@ -28,5 +29,6 @@
             <h2>Don't have an account? <a href="signup.html">Register Here</a></h2>
         </div>
     </div>
+    <?php include 'footer.php'; ?>
 </body>
 </html>

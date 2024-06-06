@@ -107,3 +107,124 @@ body{
 .fpassword-form > input[type=submit]:hover{
     background-color: #142a43;
 }
+
+/*Header.php css*/
+
+.textStyling{
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.headerClass{
+    background-color: #ffffff;
+    border-bottom: 1px solid #dcdcdc;
+    padding: 10px 20px;
+}
+
+.headerContainer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.logo img{
+    height: 110px;
+}
+
+nav{
+    flex: 1;
+}
+
+nav ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: flex-start;
+}
+
+nav ul li{
+    margin: 0 15px;
+}
+
+nav ul li a{
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+}
+
+.login .login-btn{
+    background-color: #2D3A5C;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.login .login-btn:hover{
+    background-color: #99D3E1;
+}
+
+/*footer.php styles*/
+
+.footerContainer{
+    background-color: black;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+.footerContainer .footer-content{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    text-align: left;
+}
+
+.footerContainer .footer-content .section{
+    margin: 20px;
+    flex: 1;
+    min-width: 200px;
+}
+
+.footerContainer .footer-content .section img{
+    display: block;
+    margin: 0 auto 10px auto;
+}
+
+.footerContainer .footer-content .section h3{
+    margin-bottom: 10px;
+}
+
+.footerContainer .footer-content .section p{
+    margin: 10px 0;
+    text-align: center;
+}
+
+.footerContainer .footer-content .section ul{
+    list-style: none;
+    padding: 0;
+}
+
+.footerContainer .footer-content .section ul li{
+    margin: 5px 0;
+}
+
+.footerContainer .footer-content .section ul li a{
+    color: white;
+    text-decoration: none;
+}
+
+.footerContainer .footer-content .section ul li a:hover{
+    text-decoration: underline;
+}
+
+.footerContainer .footer-bottom{
+    margin-top: 20px;
+    font-size: 14px;
+}
