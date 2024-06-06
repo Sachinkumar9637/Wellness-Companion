@@ -15,9 +15,9 @@
                 </div>    
             <nav>
                 <ul>
-                    <li><a href="#">User</a></li>
-                    <li><a href="#">Expert</a></li>
-                    <li><a href="#">Consult an Expert</a></li>
+                    <li><a href="#">User +</a></li>
+                    <li><a href="#">Expert +</a></li>
+                    <li><a href="#">Consult an Expert +</a></li>
                 </ul>
             </nav>
             <div class="login">
