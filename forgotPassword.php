@@ -6,6 +6,7 @@
     <title>Forgot Password</title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <link href='https://fonts.googleapis.com/css?family=Kaisei Opti' rel='stylesheet'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 <?php include 'header.php'; ?>
@@ -20,7 +21,7 @@
                     <h3>Enter your email and we'll send you link to reset your password</h3>
 
                     <input type="email" name="email" placeholder="Email"><br>
-                    <input type="submit" name="submit" value="Submit">
+                    <button type="submit">Submit</button>
                 </form>
             </div>
         </div>
