@@ -1,6 +1,7 @@
 body{
     margin: 0;
     width: 100%;
+    overflow-x: hidden;
     font-family: 'Kaisei Opti';
     box-sizing: border-box;
 }
@@ -24,12 +25,14 @@ body{
 }
 .login-text > h1{
     font-size: 55px;
+    color: #142a43;
 }
 .login-form{
-    padding: 8px 260px;
+    padding: 8px 220px;
 }
 .login-form > h3{
     font-size: 30px;
+    color: #142a43;
 }
 .login-form > a{
     color: #1F426B;
@@ -39,24 +42,32 @@ body{
     color: #142a43;
     font-weight: bold;
 }
-.login-form > input[type=email], input[type=password] {
+.login-form > input[type=email]{
     width: 100%;
-    padding: 15px 20px;
+    padding: 0px 20px;
     margin: 18px 0;
     border-radius: 4px;
     border: 2px solid silver;
 }
 
-.login-form > input[type=submit]{
+.login-form > input[type=password]{
+    width: 100%;
+    padding: 0px 20px;
+    margin: 18px 0;
+    border-radius: 4px;
+    border: 2px solid silver;
+}
+
+.login-form > button{
     width: 50%;
     background-color: #1F426B;
     color: white;
-    padding: 14px 20px;
+    padding: 0px 20px;
     margin: 40px 0 0 0;
     font-size: 20px;
     border-radius: 6px;
 }
-.login-form > input[type=submit]:hover{
+.login-form > button:hover{
     background-color: #142a43;
 }
 
@@ -89,22 +100,22 @@ body{
 }
 .fpassword-form > input[type=email] {
     width: 80%;
-    padding: 15px 20px;
+    padding: 0px 20px;
     margin: 18px 0;
     border-radius: 4px;
     border: 2px solid silver;
 }
 
-.fpassword-form > input[type=submit]{
+.fpassword-form > button{
     width: 40%;
     background-color: #1F426B;
     color: white;
-    padding: 14px 20px;
+    padding: 0px 20px;
     margin: 90px 0 0 0;
     font-size: 20px;
     border-radius: 6px;
 }
-.fpassword-form > input[type=submit]:hover{
+.fpassword-form > button:hover{
     background-color: #142a43;
 }
 
@@ -164,7 +175,7 @@ nav ul li a{
 }
 
 .login .login-btn:hover{
-    background-color: #99D3E1;
+    background-color: #142a43;
 }
 
 /*footer.php styles*/
@@ -227,4 +238,58 @@ nav ul li a{
 .footerContainer .footer-bottom{
     margin-top: 22px;
     font-size: 14px;
+}
+
+/*Sign-Up Page*/
+.signup{
+    margin-top: 50px;
+}
+.signup > h1{
+    text-align: center;
+    color: #142a43;
+}
+
+.signup-container{
+    display: flex;
+    flex-wrap: nowrap;
+    padding: 0px 200px;
+}
+.signup-container > div{
+    border: 1px solid black;
+    padding: 20px;
+    margin: 30px;
+    border-radius: 10px;
+}
+.signup-container > div img{
+    width: 100%;
+    border-radius: 10px;
+}
+.signupForm{
+    margin: 50px 390px;
+}
+.signup-form > h1{
+    text-align: center;
+    color: #142a43;
+}
+.signup-form > input[type=email], input[type=password], input[type=text] {
+    width: 100%;
+    padding: 15px 20px;
+    margin: 18px 0;
+    border-radius: 4px;
+    border: 2px solid silver;
+}
+
+.signup-form > button{
+    width: 30%;
+    background-color: #1F426B;
+    color: white;
+    padding: 14px 20px;
+    display: block;
+    margin: 30px auto;
+    font-size: 20px;
+    border-radius: 6px;
+}
+
+.signup-form > button:hover{
+    background-color: #142a43;
 }
