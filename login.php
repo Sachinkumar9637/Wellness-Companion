@@ -45,7 +45,7 @@
     <?php include 'header.php';?>
     <div class="login-container">
         <div class="login-image">
-            <img src="Images/home.png">
+            <img src="Images/home.jpeg">
         </div>
         <div class="login-text">
             <h1>Welcome to Cure Corner</h1><br>
@@ -62,7 +62,7 @@
                 </form>
             </div><br>
 
-            <h3>Don't have an account? <a href="signup.php">Register Here</a></h3>
+            <h4>Don't have an account? <a href="signup.php">Register Here</a></h4>
         </div>
     </div>
     <?php include 'footer.php'; ?>
