@@ -12,7 +12,7 @@
 <?php include 'header.php'; ?>
     <div class="fpassword-container">
         <div class="fpassword-image">
-            <img src="Images/home.png">
+            <img src="Images/home.jpeg">
         </div>
         <div class="fpassword-text">
             <h1>Welcome to Cure Corner</h1>
