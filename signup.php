@@ -1,22 +1,23 @@
 <?php
-    require('dbinit.php');
+    require('db.php');
 
     $error="";
 	$msg="";
 
-	if(isset($_REQUEST['reg']))
+	if(isset($_REQUEST['registration']))
 	{
-		$firstName=$_REQUEST['firstName'];
-		$lastName=$_REQUEST['lastName'];
-		$email=$_REQUEST['email'];
-		$password=$_REQUEST['password'];
-		$phoneNumber=$_REQUEST['phoneNumber'];
-		$expertise=$_REQUEST['expertise'];
-
+		$firstName=$_REQUEST['FirstName'];
+		$lastName=$_REQUEST['LastName'];
+		$email=$_REQUEST['Email'];
+		$phone=$_REQUEST['Phone'];
+		$gender=$_REQUEST['Gender'];
+		$password=$_REQUEST['Password'];
+		$profession=$_REQUEST['Profession'];
+		
 		$password= sha1($password);
 		
-		$query = "SELECT * FROM register where email='$email'";
-		$res=mysqli_query($dbc, $query);
+		$query = "SELECT * FROM tblUser where Email='$email'";
+		$res=mysqli_query($conn, $query);
 		$num=mysqli_num_rows($res);
 		
 		if($num == 1)
@@ -26,17 +27,17 @@
 		else
 		{
 			
-			if(!empty($firstName) && !empty($lastName) && !empty($email) && !empty($password) && !empty($phoneNumber) && !empty($expertise))
+			if(!empty($firstName) && !empty($lastName) && !empty($email) && !empty($password) && !empty($phone) && !empty($gender) && !empty($profession))
 			{
 				
-				$sql="INSERT INTO register (firstName,lastName,email,password,phoneNumber,expertise) VALUES ('$firstName','$lastName','$email','$password','$phoneNumber','$expertise')";
-				$result=mysqli_query($dbc, $sql);
+				$sql="INSERT INTO tblUser (FirstName,LastName,Email,Password,Contact,Gender,Profession) VALUES ('$firstName','$lastName','$email','$password','$phone','$gender','$profession')";
+				$result=mysqli_query($conn, $sql);
 
 				   if($result){
-					   $msg = "<p class='alert alert-success'>Register Successfully</p> ";
+					   $msg = "<p class='alert alert-success'>Registration Successful!!</p> ";
 				   }
 				   else{
-					   $error = "<p class='alert alert-warning'>Register Not Successfully</p> ";
+					   $error = "<p class='alert alert-warning'>Cannot Register, Check your details.</p> ";
 				   }
 			}else{
 				$error = "<p class='alert alert-warning'>Please Fill all the fields</p>";
@@ -70,7 +71,7 @@
 			</div>
 		</div>
 		<div>
-			<img src="Images/Signup1.png">
+			<img src="Images/Signup4.png">
 			<div>
 				<h3>Accupuncture Treatment</h3>
 				<p>It is a long established fact that each will be distracted by the readable</p>
@@ -91,14 +92,16 @@
 
             <?php echo $error; ?><?php echo $msg; ?>
 
-            <input type="text" id="firstName" name="firstName" placeholder="First Name"><br>
-            <input type="text" id="lastName" name="lastName" placeholder="Last Name"><br>
-            <input type="email" id="email" name="email" placeholder="Email"><br>
-            <input type="password" id="password" name="password" placeholder="Password"><br>
-            <input type="text" id="phoneNumber" name="phoneNumber" placeholder="Phone Number" maxlength="10"><br>
-            <input type="text" id="expertise" name="expertise" placeholder="Expertise"><br>
+            <input type="text" id="FirstName" name="FirstName" placeholder="First Name"><br>
+            <input type="text" id="LastName" name="LastName" placeholder="Last Name"><br>
+            <input type="email" id="email" name="Email" placeholder="Email"><br>
+            <input type="password" id="Password" name="Password" placeholder="Password"><br>
+            <input type="text" id="Phone" name="Phone" placeholder="Phone Number" maxlength="10"><br>
+            <input type="text" id="Gender" name="Gender" placeholder="Gender"><br>
+			<input type="text" id="Profession" name="Profession" placeholder="Profession"><br>
 
-            <button type="submit" name="reg">Sign Up</button>
+
+            <button type="submit" name="registration">Sign Up</button>
         </form>
 	</div>
 
