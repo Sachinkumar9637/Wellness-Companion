@@ -11,14 +11,14 @@ body{
     display: flex;
 }
 .login-image{
-    flex: 35%;
+    flex: 50%;
 }
 .login-image > img{
     width: 100%;
     height: 830px;
 }
 .login-text{
-    flex: 65%;
+    flex: 50%;
     text-align: center;
     line-height: 50px;
     margin-top: 50px;
@@ -28,7 +28,7 @@ body{
     color: #142a43;
 }
 .login-form{
-    padding: 8px 220px;
+    padding: 8px 100px;
 }
 .login-form > h3{
     font-size: 30px;
@@ -77,14 +77,14 @@ body{
     display: flex;
 }
 .fpassword-image{
-    flex: 35%;
+    flex: 50%;
 }
 .fpassword-image > img{
     width: 100%;
     height: 830px;
 }
 .fpassword-text{
-    flex: 65%;
+    flex: 50%;
     text-align: center;
     line-height: 50px;
     margin-top: 50px;
@@ -93,7 +93,7 @@ body{
     font-size: 55px;
 }
 .fpassword-form{
-    padding: 68px 100px;
+    padding: 68px 30px;
 }
 .fpassword-form > h3{
     font-size: 22px;
@@ -111,7 +111,7 @@ body{
     background-color: #1F426B;
     color: white;
     padding: 0px 20px;
-    margin: 90px 0 0 0;
+    margin: 60px 0 30px 0;
     font-size: 20px;
     border-radius: 6px;
 }
@@ -249,6 +249,10 @@ nav ul li a{
     color: #142a43;
 }
 
+.signup-text{
+    margin-top: 20px;
+}
+
 .signup-container{
     display: flex;
     flex-wrap: nowrap;
@@ -270,6 +274,7 @@ nav ul li a{
 .signup-form > h1{
     text-align: center;
     color: #142a43;
+    margin-top: 20px;
 }
 .signup-form > input[type=email], input[type=password], input[type=text] {
     width: 100%;
@@ -469,9 +474,35 @@ nav ul li a{
     text-decoration: none;
     border-radius: 15px;
 }
-
 .about-text-p, .text-p{
     color:  #99D3E1;
     text-decoration: solid;
 
+}
+
+/* Mobile screen for all the pages */
+@media only screen and (max-width: 768px) {
+    .login-container{
+        flex-direction: column;
+    }
+    .login-form{
+        padding: 8px 20px;
+    }
+    .fpassword-container{
+        flex-direction: column;
+    }
+    .fpassword-form{
+        padding: 8px 10px;
+    }
+    .signup-container{
+        flex-direction: column;
+        flex-wrap: wrap;
+        padding: 0;
+    }
+    .signupForm{
+        margin: 0px 40px;
+    }
+    .signup-form > button{
+        padding: 14px 0px;
+    }
 }
