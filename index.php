@@ -55,36 +55,68 @@
                 </div>
             </div>
         </section>
-		<section class="why-choose-us">
+		<section class="why-choose-us" id="why-choose-us">
 		<p class="text-p">-- Why Choose Us</p>
             <h2>Why Choose Cure Corner</h2>
             <div class="features">
-                <div class="feature">
+                <div class="feature hidden">
                     <img src="Images/feature1.jpeg" alt="Technical Error! Feature 1 image">
                     <h3>Health Assessments</h3>
                     <p>We analyze your lifestyle and health data to predict and warn you about potential future health risks, helping you stay proactive about your wellbeing.</p>
                 </div>
-                <div class="feature">
+                <div class="feature hidden">
                     <img src="Images/feature2.jpeg" alt="Technical Error! Feature 2 image">
                     <h3>Therapy Goals</h3>
                     <p>Our goal is to provide to good therapy to keep to you fit an healthy.</p>
                 </div>
-                <div class="feature">
+                <div class="feature hidden">
                     <img src="Images/feature3.jpeg" alt="Technical Error! Feature 3 image">
                     <h3>Experienced Staff</h3>
                     <p>We have experienced staff you has 15+ years of experience in therapy and exercise traning.</p>
                 </div>
             </div>
         </section>
-		<section class="testimonials">
-            <h2>Best Quality Services With Minimal Pain Rate</h2>
-            <div class="testimonial">
-                <p>"The best treatment experience ever!"</p>
-                <span>- John Doe</span>
+        <section class="testimonials">
+            <div class="testimonial-bg">
+                <img src="Images/testimonialimage.webp" alt="Background Image" class="background-img">
             </div>
-            <div class="testimonial">
-                <p>"Highly professional and caring staff."</p>
-                <span>- Jane Smith</span>
+            <div class="testimonial-content">
+            <p class="text-p">-- Solutions to your pain</p>
+                <h2>Best Quality Services With Minimal Pain Rate</h2>
+                <div class="testimonial-container">
+                    <div class="testimonial-slide">
+                        <div class="testimonial-card">
+                            <img src="Images/superman.jpg" alt="User Image" class="testimonial-img">
+                            <h3>Super Man</h3>
+                            <p class="role">Actor</p>
+                            <p class="testimonial-text">"Hi there! As everyone knows, I am Superman with incredible powers, but I also have some health problems. After disclosing my medical background to curecorner, they provided me with a daily workout regimen, which has helped me stay well and save the planet."</p>
+                            <div class="stars">★★★★★</div>
+                        </div>
+                    </div>
+                    <div class="testimonial-slide">
+                        <div class="testimonial-card">
+                            <img src="Images/lewis.webp" alt="User Image" class="testimonial-img">
+                            <h3>Lewis Hamilton</h3>
+                            <p class="role">F1 Driver</p>
+                            <p class="testimonial-text">"Hello, I used to suffer severe back discomfort when driving an F1 car. I shared this information with curecorner, and their advice and wellness activities helped me get better. I'm winning races and driving pain-free right now. I advise everyone to use curecorner's workout advice."</p>
+                            <div class="stars">★★★★</div>
+                        </div>
+                    </div>
+                    <div class="testimonial-slide">
+                        <div class="testimonial-card">
+                            <img src="Images/toto.jpeg" alt="User Image" class="testimonial-img">
+                            <h3>Toto Wolf</h3>
+                            <p class="role">Mercedes F1 Team Manager</p>
+                            <p class="testimonial-text">"The most amazing experience receiving therapy! I highly recommend that you follow curecorner."</p>
+                            <div class="stars">★★★★★</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-nav">
+                    <span class="dot active" onclick="showSlide(0)"></span>
+                    <span class="dot" onclick="showSlide(1)"></span>
+                    <span class="dot" onclick="showSlide(2)"></span>
+                </div>
             </div>
         </section>
 		<section class="team">
@@ -108,5 +140,6 @@
         </section>
 	</main>
 	<?php include 'footer.php'; ?>
+    <script src="script.js"></script>
 </body>
 </html>
