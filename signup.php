@@ -10,10 +10,10 @@
 		$lastName=$_REQUEST['LastName'];
 		$email=$_REQUEST['Email'];
 		$phone=$_REQUEST['Phone'];
-		$gender=$_REQUEST['Gender'];
+		$gender = isset($_POST['Gender']) ? $_POST['Gender'] : '';
 		$password=$_REQUEST['Password'];
 		$profession=$_REQUEST['Profession'];
-		
+
 		$password= sha1($password);
 		
 		$query = "SELECT * FROM tblUser where Email='$email'";
@@ -65,21 +65,21 @@
 	<div class="signup-container">
 		<div>
 			<img src="Images/Signup1.png">
-			<div>
+			<div class="signup-text">
 				<h3>Spanial Decompression</h3>
 				<p>It is a long established fact that each will be distracted by the readable</p>
 			</div>
 		</div>
 		<div>
 			<img src="Images/Signup4.png">
-			<div>
+			<div class="signup-text">
 				<h3>Accupuncture Treatment</h3>
 				<p>It is a long established fact that each will be distracted by the readable</p>
 			</div>
 		</div>
 		<div>
 			<img src="Images/Signup3.png">
-			<div>
+			<div class="signup-text">
 				<h3>Fitness Treatment</h3>
 				<p>It is a long established fact that each will be distracted by the readable</p>
 			</div>
@@ -97,7 +97,11 @@
             <input type="email" id="email" name="Email" placeholder="Email"><br>
             <input type="password" id="Password" name="Password" placeholder="Password"><br>
             <input type="text" id="Phone" name="Phone" placeholder="Phone Number" maxlength="10"><br>
-            <input type="text" id="Gender" name="Gender" placeholder="Gender"><br>
+            <select id="Gender" name="Gender">
+                <option value="" disabled selected>Select your gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select><br>
 			<input type="text" id="Profession" name="Profession" placeholder="Profession"><br>
 
 

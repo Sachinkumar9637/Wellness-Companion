@@ -1,8 +1,12 @@
+*{
+    font-family: "Arsenal", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
 body{
     margin: 0;
     width: 100%;
     overflow-x: hidden;
-    font-family: 'Kaisei Opti';
     box-sizing: border-box;
 }
 
@@ -277,6 +281,14 @@ nav ul li a{
     margin-top: 20px;
 }
 .signup-form > input[type=email], input[type=password], input[type=text] {
+    width: 100%;
+    padding: 15px 20px;
+    margin: 18px 0;
+    border-radius: 4px;
+    border: 2px solid silver;
+}
+
+select{
     width: 100%;
     padding: 15px 20px;
     margin: 18px 0;
