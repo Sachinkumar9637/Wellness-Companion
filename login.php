@@ -1,6 +1,6 @@
 <?php 
     session_start();
-    include("dbinit.php");
+    include("db.php");
     $error="";
     $msg="";
 
@@ -13,19 +13,19 @@
         
         if(!empty($email) && !empty($password))
         {
-            $sql = "SELECT * FROM register where email='$email' && password='$password'";
-            $result=mysqli_query($dbc, $sql);
+            $sql = "SELECT * FROM tblUser where Email='$email' && Password='$password'";
+            $result=mysqli_query($conn, $sql);
             $row=mysqli_fetch_array($result);
                if($row){
-                    $_SESSION['ID']=$row['ID'];
-                    $_SESSION['email']=$email;
+                    $_SESSION['UserID']=$row['ID'];
+                    $_SESSION['Email']=$email;
                     header("location:index.php");
                }
                else{
                    $error = "<p class='alert alert-warning'>Email or Password doesnot match!</p> ";
                }
         }else{
-            $error = "<p class='alert alert-warning'>Please Fill all the fields</p>";
+            $error = "<p class='alert alert-warning'>Please fill all the fields</p>";
         }
     }
 ?>
@@ -62,7 +62,7 @@
                 </form>
             </div><br>
 
-            <h4>Don't have an account? <a href="signup.php">Register Here</a></h4>
+            <h3>Don't have an account? <a href="signup.php">Register Here</a></h3>
         </div>
     </div>
     <?php include 'footer.php'; ?>
