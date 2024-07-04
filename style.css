@@ -1,8 +1,12 @@
+*{
+    font-family: "Arsenal", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
 body {
     margin: 0;
     width: 100%;
     overflow-x: hidden;
-    font-family: 'Kaisei Opti';
     box-sizing: border-box;
 
 }
@@ -327,10 +331,7 @@ nav ul li:hover .nav-dropdown {
     color: #142a43;
     margin-top: 20px;
 }
-
-.signup-form>input[type=email],
-input[type=password],
-input[type=text] {
+.signup-form > input[type=email], input[type=password], input[type=text] {
     width: 100%;
     padding: 15px 20px;
     margin: 18px 0;
