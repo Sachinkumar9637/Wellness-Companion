@@ -23,7 +23,7 @@
                 <ul>
                     <li><a href="#">User +</a>
                     <div class="nav-dropdown">
-                            <a href="#">User Profile</a>
+                            <a href="userProfile.php">User Profile</a>
                             <a href="#">Reminders</a>
                             <a href="#">Personalized Exercise Plans</a>
                     </div>  
