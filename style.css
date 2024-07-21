@@ -291,26 +291,27 @@ nav ul li:hover .nav-dropdown {
 }
 
 /*Sign-Up Page*/
-.signup {
+.signup, .usrprofile {
     margin-top: 50px;
 }
 
-.signup>h1 {
+.signup>h1, .usrprofile>h1 {
     text-align: center;
     color: #142a43;
+    font-weight: bold;
 }
 
-.signup-text {
+.signup-text, .usrprofile-text {
     margin-top: 20px;
 }
 
-.signup-container {
+.signup-container, .usrprofile-container {
     display: flex;
     flex-wrap: nowrap;
     padding: 0px 200px;
 }
 
-.signup-container>div {
+.signup-container>div, .usrprofile-container>div {
     border: 1px solid black;
     padding: 20px;
     margin: 30px;
@@ -318,6 +319,11 @@ nav ul li:hover .nav-dropdown {
 }
 
 .signup-container>div img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.usrprofile-container>div img {
     width: 100%;
     border-radius: 10px;
 }
@@ -330,8 +336,17 @@ nav ul li:hover .nav-dropdown {
     text-align: center;
     color: #142a43;
     margin-top: 20px;
+    font-weight: bold;
 }
 .signup-form > input[type=email], input[type=password], input[type=text] {
+    width: 100%;
+    padding: 15px 20px;
+    margin: 18px 0;
+    border-radius: 4px;
+    border: 2px solid silver;
+}
+
+#Gender{
     width: 100%;
     padding: 15px 20px;
     margin: 18px 0;
@@ -645,6 +660,53 @@ nav ul li:hover .nav-dropdown {
     transform: translateY(0);
 }
 
+/* User Profile Setup code */
+.userProfileForm> h1{
+    text-align: center;
+    margin-top: 30px;
+    color: #142a43;
+    font-weight: bold;
+}
+
+.row{
+    margin: 50px 70px;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px 140px;
+}
+.form-section{
+    flex: 33%;
+    max-width: 33%;
+    padding: 0 4px;
+}
+
+.form-section > h3{
+    font-weight: bold;
+}
+
+.form-section> input[type="text"],
+.form-section> input[type="number"],
+.form-section> textarea,
+.form-section> select {
+    width: 100%;
+    height: 50px;
+    padding: 5px 20px;
+    margin: 18px 0;
+    border-radius: 4px;
+    border: 2px solid silver;
+}
+  
+.row> button {
+    width: 30%;
+    background-color: #1F426B;
+    color: white;
+    padding: 14px 20px;
+    display: block;
+    margin: 30px auto;
+    font-size: 20px;
+    border-radius: 6px;
+}
+
 
 /* Mobile screen for all the pages */
 @media only screen and (max-width: 768px) {
@@ -664,10 +726,24 @@ nav ul li:hover .nav-dropdown {
         padding: 8px 10px;
     }
 
-    .signup-container {
+    .signup-container, .usrprofile-container {
         flex-direction: column;
         flex-wrap: wrap;
         padding: 0;
+    }
+
+    .row{
+        margin: 0px;
+        padding: 10px 20px;
+    }
+
+    .form-section{
+        flex: 100%;
+        max-width: 100%;
+    }
+
+    .form-section > h3{
+        margin-top: 15px;
     }
 
     .signupForm {
@@ -746,7 +822,6 @@ nav ul li:hover .nav-dropdown {
 
     .banner-nav {
         position: absolute;
-        
     }
 
     .banner-nav a {
