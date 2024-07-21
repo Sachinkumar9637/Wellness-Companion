@@ -52,6 +52,7 @@ mysqli_query($conn, "CREATE TABLE IF NOT EXISTS tblUserProfile (
   SittingDuration VARCHAR(45) NULL,
   StandingDuration VARCHAR(45) NULL,
   PainArea VARCHAR(45) NULL,
+  PainDescription VARCHAR(450) NULL,
   PainIntensity VARCHAR(45) NULL,
   CaloriesIntake VARCHAR(45) NULL,
   CurrentHealthConditions VARCHAR(45) NULL,
