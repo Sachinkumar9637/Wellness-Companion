@@ -1,5 +1,6 @@
 <?php
     require('db.php');
+	session_start();
 
     $error="";
 	$msg="";
@@ -34,6 +35,9 @@
 				$result=mysqli_query($conn, $sql);
 
 				   if($result){
+						$userID = mysqli_insert_id($conn);
+
+						$_SESSION['UserID'] = $userID;
 					   $msg = "<p class='alert alert-success'>Registration Successful!!</p> ";
 				   }
 				   else{
@@ -66,7 +70,7 @@
 		<div>
 			<img src="Images/Signup1.png">
 			<div class="signup-text">
-				<h3>Spanial Decompression</h3>
+				<h3>Spinal Decompression</h3>
 				<p>It is a long established fact that each will be distracted by the readable</p>
 			</div>
 		</div>
