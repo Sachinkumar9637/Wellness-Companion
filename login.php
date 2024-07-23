@@ -16,14 +16,26 @@
             $sql = "SELECT * FROM tblUser where Email='$email' && Password='$password'";
             $result=mysqli_query($conn, $sql);
             $row=mysqli_fetch_array($result);
-               if($row){
-                    $_SESSION['UserID']=$row['ID'];
-                    $_SESSION['Email']=$email;
-                    header("location:index.php");
-               }
-               else{
-                   $error = "<p class='alert alert-warning'>Email or Password doesnot match!</p> ";
-               }
+            if($row){
+                $_SESSION['UserID']=$row['ID'];
+                $_SESSION['Email']=$email;
+                header("location:index.php");
+            }
+            else{
+                $error = "<p class='alert alert-warning'>Email or Password doesnot match!</p> ";
+            }
+
+            $sql1 = "SELECT * FROM tblExpert where Email='$email' && Password='$password'";
+            $result1 = mysqli_query($conn, $sql1);
+            $row1 = mysqli_fetch_array($result1);
+            if($row1){
+                $_SESSION['ExpertID'] = $row1['ID'];
+                $_SESSION['Email'] = $email;
+                header("location:index.php");
+            }
+            else{
+                $error = "<p class='alert alert-warning'>Email or Password doesnot match!</p> ";
+            }
         }else{
             $error = "<p class='alert alert-warning'>Please fill all the fields</p>";
         }
@@ -64,7 +76,7 @@
                 </form>
             </div><br>
 
-            <h3>Don't have an account? <a href="signup.php">Register Here</a></h3>
+            <h5>Don't have an account? <a href="userSignup.php">Register For User</a> / <a href="userSignup.php">Register For Expert</a></h5>
         </div>
     </div>
     <?php include 'footer.php'; ?>
