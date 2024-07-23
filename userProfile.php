@@ -23,15 +23,15 @@
         $CurrentHealthConditions = isset($_POST['current-health-conditions']) ? $_POST['current-health-conditions'] : '';
 
         // Retrieve the user ID from the session
-        $userID=$_SESSION['UserID'];
+        // $userID=$_SESSION['UserID'];
 
-        // Debugging output
-        echo "<pre>";
-        print_r($_POST);
-        echo "</pre>";
-        echo "<pre>";
-        print_r($_SESSION);
-        echo "</pre>";
+        // // Debugging output
+        // echo "<pre>";
+        // print_r($_POST);
+        // echo "</pre>";
+        // echo "<pre>";
+        // print_r($_SESSION);
+        // echo "</pre>";
 
         if (!empty($Age) && !empty($Profession) && !empty($Height) && !empty($Weight) && !empty($WorkEnvironment) && 
             !empty($WorkType) && !empty($SittingDuration) && !empty($StandingDuration) && !empty($PainArea) && 
