@@ -33,10 +33,11 @@ mysqli_query($conn, "CREATE TABLE IF NOT EXISTS tblExpert (
   ExpertID INT NOT NULL AUTO_INCREMENT,
   FirstName VARCHAR(50) NULL,
   LastName VARCHAR(50) NULL,
-  Expertise VARCHAR(50) NULL,
   Contact INT NULL,
   Email VARCHAR(50),
   Password VARCHAR(50),
+  Gender VARCHAR(50) NULL,
+  Expertise VARCHAR(50) NULL,
   PRIMARY KEY (ExpertID)
 ) ENGINE=InnoDB");
 
