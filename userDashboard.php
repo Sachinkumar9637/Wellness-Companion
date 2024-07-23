@@ -7,9 +7,15 @@ if (!isset($_SESSION['Email'])) {
 }
 
 $email = $_SESSION['Email'];
-$sql = "SELECT * FROM tblUser WHERE Email='$email'";
+$userDetails = "SELECT * FROM tblUser WHERE Email='$email'";
+$resultUser = mysqli_query($conn, $userDetails);
+$user = mysqli_fetch_assoc($resultUser);
+
+$UserID = $_SESSION['UserID'];
+$sql = "SELECT * FROM tblUserProfile WHERE UserID='$UserID'";
 $result = mysqli_query($conn, $sql);
-$user = mysqli_fetch_assoc($result);
+$userData = mysqli_fetch_assoc($result);
+
 ?>
 
 <!DOCTYPE html>
@@ -20,54 +26,9 @@ $user = mysqli_fetch_assoc($result);
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>User Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    
     <link href='https://fonts.googleapis.com/css?family=Kaisei+Opti' rel='stylesheet'>
-    <style>
-        body {
-            font-family: 'Kaisei Opti', serif;
-        }
-        h2, h4 {
-            font-weight: bold;
-        }
-        .headerClass {
-            background-color: #f8f9fa;
-            padding: 20px 0;
-            border-bottom: 1px solid #dee2e6;
-        }
-        .headerContainer .nav-link {
-            font-size: 1.1rem;
-            font-weight: bold;
-        }
-        .login-btn {
-            font-size: 1rem;
-            font-weight: bold;
-        }
-        .welcome-section {
-            background-color: #f0f4f8;
-            padding: 20px;
-            border-radius: 8px;
-            margin: 20px 0;
-            text-align: center;
-        }
-        .bmi-section h3 {
-            color: #1F426B;
-        }
-        .appointment-section, .reminder-section {
-            background-color: #f9fafc;
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        .btn-primary {
-            background-color: #1F426B;
-            border-color: #1F426B;
-        }
-        .btn-primary:hover {
-            background-color: #1A3559;
-            border-color: #1A3559;
-        }
-    </style>
+    
 </head>
 
 <body>
@@ -87,10 +48,13 @@ $user = mysqli_fetch_assoc($result);
                 </div>
                 <div class="bmi-section mb-4">
                     <?php
+                    $height = $userData["Height"];
+                    $weight = $userData["Weight"];
+
                   //  BMI API
                     $BMI_API = curl_init();
                     curl_setopt_array($BMI_API, [
-                        CURLOPT_URL => "https://bmi-calculator9.p.rapidapi.com/BMI_Calculator?cm=190&kg=78",
+                        CURLOPT_URL => "https://bmi-calculator9.p.rapidapi.com/BMI_Calculator?cm={$height}&kg={$weight}",
                         CURLOPT_RETURNTRANSFER => true,
                         CURLOPT_ENCODING => "",
                         CURLOPT_MAXREDIRS => 10,
@@ -149,10 +113,11 @@ $user = mysqli_fetch_assoc($result);
                     <h2>Exercise Recommendations</h2>
                     <div class="row mt-4">
                         <?php
+                        $painArea = strtolower($userData["PainArea"]);
                        // Exercise API
                         $curl = curl_init();
                         curl_setopt_array($curl, [
-                            CURLOPT_URL => "https://exercisedb.p.rapidapi.com/exercises/bodyPart/back?",
+                            CURLOPT_URL => "https://exercisedb.p.rapidapi.com/exercises/bodyPart/{$painArea}?",
                             CURLOPT_RETURNTRANSFER => true,
                             CURLOPT_ENCODING => "",
                             CURLOPT_MAXREDIRS => 10,
