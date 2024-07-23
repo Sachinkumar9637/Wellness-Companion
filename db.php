@@ -28,7 +28,7 @@ mysqli_query($conn, "CREATE TABLE IF NOT EXISTS tblUser (
   PRIMARY KEY (UserID)
 ) ENGINE=InnoDB");
 
-// Create tblExpert
+// Create tblExpert for Expert
 mysqli_query($conn, "CREATE TABLE IF NOT EXISTS tblExpert (
   ExpertID INT NOT NULL AUTO_INCREMENT,
   FirstName VARCHAR(50) NULL,
