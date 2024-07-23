@@ -20,7 +20,7 @@
                 <h3>Quick Links</h3>
                 <ul>
                     <li><a href="#">About Us</a></li>
-                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="contactus.php">Contact Us</a></li>
                     <li><a href="#">Privacy Policy</a></li>
                     <li><a href="#">Terms & Conditions</a></li>
                     <li><a href="#">Our Team</a></li>
