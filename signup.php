@@ -85,8 +85,9 @@
 			</div>
 		</div>
 	</div>
-
+<!-- Sign up form on click/tab - to be done <button></button> -->
 	<div class="signupForm">
+
 		<form class="signup-form" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST" id="registration_form">
             <h1>Sign-Up Here</h1>
 

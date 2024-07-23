@@ -1,38 +1,51 @@
-<?php 
-    session_start();
-    include("db.php");
-    $error="";
-    $msg="";
+<?php
+session_start();
+include ("db.php");
+$error = "";
+$msg = "";
 
-    if(isset($_REQUEST['login']))
-    {
-        $email=$_REQUEST['email'];
-        $password=$_REQUEST['password'];
+if (isset($_REQUEST['login'])) {
+    $email = $_REQUEST['email'];
+    $password = $_REQUEST['password'];
 
-        $password= sha1($password);
-        
-        if(!empty($email) && !empty($password))
-        {
-            $sql = "SELECT * FROM tblUser where Email='$email' && Password='$password'";
-            $result=mysqli_query($conn, $sql);
-            $row=mysqli_fetch_array($result);
-               if($row){
-                    $_SESSION['UserID']=$row['ID'];
-                    $_SESSION['Email']=$email;
-                    header("location:index.php");
-               }
-               else{
-                   $error = "<p class='alert alert-warning'>Email or Password doesnot match!</p> ";
-               }
-        }else{
-            $error = "<p class='alert alert-warning'>Please fill all the fields</p>";
+    $password = sha1($password);
+
+    if (!empty($email) && !empty($password)) {
+        $userQuery = "SELECT * FROM tblUser WHERE Email='$email' AND Password='$password'";
+        $userResult = mysqli_query($conn, $userQuery);
+
+        $expertQuery = "SELECT * FROM tblExpert WHERE Email='$email' AND Password='$password'";
+        $expertResult = mysqli_query($conn, $expertQuery);
+
+        if ($userRow = mysqli_fetch_array($userResult)) {
+            $_SESSION['Email'] = $email;
+            $_SESSION['Password'] = $password;
+            $_SESSION['userType']="user";
+
+
+            echo "<script>window.location.href='userDashboard.php'</script>";
         }
+        elseif ($expertRow = mysqli_fetch_array($expertResult)) {
+            $_SESSION['Email'] = $email;
+            $_SESSION['Password'] = $password;
+            $_SESSION['userType']="expert";
+
+            echo "<script>window.location.href='expertDashboard.php'</script>";
+        }
+        else {
+            $error = "<p class='alert alert-warning'>Email or Password does not match!</p>";
+        }
+    } else {
+        $error = "<p class='alert alert-warning'>Please fill all the fields</p>";
     }
+}
 ?>
+
 
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -40,11 +53,13 @@
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Arsenal:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Arsenal:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
+
 <body>
-    <?php include 'header.php';?>
+    <?php include 'header.php'; ?>
     <div class="login-container">
         <div class="login-image">
             <img src="Images/home.jpeg">
@@ -69,4 +84,5 @@
     </div>
     <?php include 'footer.php'; ?>
 </body>
+
 </html>
