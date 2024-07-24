@@ -1,5 +1,6 @@
 <?php
     require('db.php');
+	session_start();
 
     $error="";
 	$msg="";
@@ -34,7 +35,11 @@
 				$result=mysqli_query($conn, $sql);
 
 				   if($result){
+						$userID = mysqli_insert_id($conn);
+
+						$_SESSION['UserID'] = $userID;
 					   $msg = "<p class='alert alert-success'>Registration Successful!!</p> ";
+					   header("location:login.php");
 				   }
 				   else{
 					   $error = "<p class='alert alert-warning'>Cannot Register, Check your details.</p> ";
@@ -51,7 +56,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Sign Up Page</title>
+	<title>User Sign Up Page</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<link href='https://fonts.googleapis.com/css?family=Kaisei Opti' rel='stylesheet'>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -66,7 +71,7 @@
 		<div>
 			<img src="Images/Signup1.png">
 			<div class="signup-text">
-				<h3>Spanial Decompression</h3>
+				<h3>Spinal Decompression</h3>
 				<p>It is a long established fact that each will be distracted by the readable</p>
 			</div>
 		</div>

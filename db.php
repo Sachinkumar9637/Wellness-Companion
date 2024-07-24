@@ -28,15 +28,16 @@ mysqli_query($conn, "CREATE TABLE IF NOT EXISTS tblUser (
   PRIMARY KEY (UserID)
 ) ENGINE=InnoDB");
 
-// Create tblExpert
+// Create tblExpert for Expert
 mysqli_query($conn, "CREATE TABLE IF NOT EXISTS tblExpert (
   ExpertID INT NOT NULL AUTO_INCREMENT,
   FirstName VARCHAR(50) NULL,
   LastName VARCHAR(50) NULL,
-  Expertise VARCHAR(50) NULL,
   Contact INT NULL,
   Email VARCHAR(50),
   Password VARCHAR(50),
+  Gender VARCHAR(50) NULL,
+  Expertise VARCHAR(50) NULL,
   PRIMARY KEY (ExpertID)
 ) ENGINE=InnoDB");
 
@@ -52,6 +53,7 @@ mysqli_query($conn, "CREATE TABLE IF NOT EXISTS tblUserProfile (
   SittingDuration VARCHAR(45) NULL,
   StandingDuration VARCHAR(45) NULL,
   PainArea VARCHAR(45) NULL,
+  PainDescription VARCHAR(450) NULL,
   PainIntensity VARCHAR(45) NULL,
   CaloriesIntake VARCHAR(45) NULL,
   CurrentHealthConditions VARCHAR(45) NULL,

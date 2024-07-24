@@ -80,7 +80,7 @@ if (isset($_REQUEST['login'])) {
                 </form>
             </div><br>
 
-            <h3>Don't have an account? <a href="signup.php">Register Here</a></h3>
+            <h5>Don't have an account? <a href="userSignup.php">Register For User</a> / <a href="userSignup.php">Register For Expert</a></h5>
         </div>
     </div>
     <?php include 'footer.php'; ?>
