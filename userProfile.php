@@ -6,54 +6,70 @@
     $msg = "";
 
     if (isset($_POST['UserProfile'])) {
-        $Age = isset($_POST['age']) ? $_POST['age'] : '';
-        $Profession = isset($_POST['profession']) ? $_POST['profession'] : '';
-        $Height = isset($_POST['height']) ? $_POST['height'] : '';
-        $Weight = isset($_POST['weight']) ? $_POST['weight'] : '';
-        
-        $WorkEnvironment = isset($_POST['workEnvironment']) ? $_POST['workEnvironment'] : '';
-        $WorkType = isset($_POST['workType']) ? $_POST['workType'] : '';
-        $SittingDuration = isset($_POST['sitting-duration']) ? $_POST['sitting-duration'] : '';
-        $StandingDuration = isset($_POST['standing-duration']) ? $_POST['standing-duration'] : '';
-
-        $PainArea = isset($_POST['pain-areas']) ? $_POST['pain-areas'] : '';
-        $PainDescription = isset($_POST['pain-description']) ? $_POST['pain-description'] : '';
-        $PainIntensity = isset($_POST['pain-intensity']) ? $_POST['pain-intensity'] : '';
-        $CaloriesIntake = isset($_POST['calories-intake']) ? $_POST['calories-intake'] : '';
-        $CurrentHealthConditions = isset($_POST['current-health-conditions']) ? $_POST['current-health-conditions'] : '';
-
-        // Retrieve the user ID from the session
-        // $userID=$_SESSION['UserID'];
-
-        // // Debugging output
-        // echo "<pre>";
-        // print_r($_POST);
-        // echo "</pre>";
-        // echo "<pre>";
-        // print_r($_SESSION);
-        // echo "</pre>";
-
-        if (!empty($Age) && !empty($Profession) && !empty($Height) && !empty($Weight) && !empty($WorkEnvironment) && 
-            !empty($WorkType) && !empty($SittingDuration) && !empty($StandingDuration) && !empty($PainArea) && 
-            !empty($PainDescription) && !empty($PainIntensity) && !empty($CaloriesIntake) && !empty($CurrentHealthConditions) &&
-            !empty($userID))
-        {
-            $sql = "INSERT INTO tblUserProfile (Age, Profession, Height, Weight, WorkEnvironment, WorkType, SittingDuration,
-            StandingDuration, PainArea, PainDescription, PainIntensity, CaloriesIntake, CurrentHealthConditions, tblUser_UserID) 
-            VALUES ('$Age','$Profession','$Height','$Weight','$WorkEnvironment','$WorkType','$SittingDuration',
-            '$StandingDuration','$PainArea','$PainDescription','$PainIntensity','$CaloriesIntake','$CurrentHealthConditions', '$userID')";
-
-            $result = mysqli_query($conn, $sql);
-
-            if ($result) {
-                $msg = "<p class='alert alert-success'>User Profile SetUp Successful.</p> ";
-            } else {
-                $error = "<p class='alert alert-warning'>Cannot Setup Profile, Check your details.</p> ";
-            }
+        $age = $_POST['age'];
+        $profession = $_POST['profession'];
+        $height = $_POST['height'];
+        $weight = $_POST['weight'];
+        $workEnvironment = $_POST['workEnvironment'];
+        $workType = $_POST['workType'];
+        $sittingDuration = $_POST['sittingDuration'];
+        $standingDuration = $_POST['standingDuration'];
+        $painArea = $_POST['painArea'];
+        $painIntensity = $_POST['painIntensity'];
+        $caloriesIntake = $_POST['caloriesIntake'];
+        $currentHealthConditions = $_POST['currentHealthConditions'];
+        $userID = $_SESSION['UserID'];
+        // Validate input
+        if (empty($age) || empty($profession) || empty($height) || empty($weight) || empty($workEnvironment) || empty($workType) || empty($sittingDuration) || empty($standingDuration) || empty($painArea) || empty($painIntensity) || empty($caloriesIntake) || empty($currentHealthConditions)) {
+            $error = "<p class='alert alert-warning'>Please fill all fields</p>";
         } else {
-            $error = "<p class='alert alert-warning'>Please Fill all the fields</p>";
+            // Check if profile already exists
+            $profileQuery = "SELECT * FROM tblUserProfile WHERE UserID = '$userID'";
+            $profileResult = mysqli_query($conn, $profileQuery);
+            if (mysqli_num_rows($profileResult) > 0) {
+                // Update existing profile
+                $updateQuery = "UPDATE tblUserProfile SET
+                    Age='$age',
+                    Profession='$profession',
+                    Height='$height',
+                    Weight='$weight',
+                    WorkEnvironment='$workEnvironment',
+                    WorkType='$workType',
+                    SittingDuration='$sittingDuration',
+                    StandingDuration='$standingDuration',
+                    PainArea='$painArea',
+                    PainIntensity='$painIntensity',
+                    CaloriesIntake='$caloriesIntake',
+                    CurrentHealthConditions='$currentHealthConditions'
+                    WHERE UserID='$userID'";
+    
+                if (mysqli_query($conn, $updateQuery)) {
+                    $_SESSION['PainArea'] = $painArea; // Save painArea to session
+                    echo "<script>window.location.href='userDashboard.php'</script>";
+                    exit();
+                } else {
+                    $error = "<p class='alert alert-danger'>Error updating profile: " . mysqli_error($conn) . "</p>";
+                }
+            } else {
+                // Insert new profile
+                $insertQuery = "INSERT INTO tblUserProfile (
+        Age, Profession, Height, Weight, WorkEnvironment, WorkType, SittingDuration, StandingDuration, PainArea, PainIntensity, CaloriesIntake, CurrentHealthConditions, UserID
+    ) VALUES (
+        '$age', '$profession', '$height', '$weight', '$workEnvironment', '$workType', '$sittingDuration', '$standingDuration', '$painArea', '$painIntensity', '$caloriesIntake', '$currentHealthConditions', '$userID'
+    )";
+    
+                if (mysqli_query($conn, $insertQuery)) {
+                    $_SESSION['PainArea'] = $painArea; // Save painArea to session
+                    echo "<script>window.location.href='userDashboard.php'</script>";
+                    exit();
+                } else {
+                    $error = "<p class='alert alert-danger'>Error creating profile: " . mysqli_error($conn) . "</p>";
+                }
+            }
         }
     }
+    ?>
+    
 ?>
 
 <!DOCTYPE html>
@@ -149,13 +165,13 @@
                         <option value="Volunteer">Volunteer</option>
                     </select>
 
-                    <input type="text" id="sitting-duration" name="sitting-duration" placeholder="Sitting Duration">
-                    <input type="text" id="standing-duration" name="standing-duration" placeholder="Standing Duration">
+                    <input type="text" id="sittingDuration" name="sittingDuration" placeholder="Sitting Duration">
+                    <input type="text" id="standingDuration" name="standingDuration" placeholder="Standing Duration">
                 </div>
 
                 <div class="form-section">
                     <h3>Health Info</h3>
-                    <select id="pain-areas" name="pain-areas">
+                    <select id="painArea" name="painArea">
                         <option value="" disabled selected>Pain Areas</option>
                         <option value="Back">Back</option>
                         <option value="Cardio">Cardio</option>
@@ -168,10 +184,10 @@
                         <option value="Upper Legs">Upper Legs</option>
                         <option value="Waist">Waist</option>
                     </select>
-                    <textarea id="pain-description" name="pain-description" placeholder="Pain Description"></textarea>
-                    <input type="text" id="pain-intensity" name="pain-intensity" placeholder="Pain Intensity">   
-                    <input type="text" id="calories-intake" name="calories-intake" placeholder="Calories Intake">
-                    <input type="text" id="current-health-conditions" name="current-health-conditions" placeholder="Current Health Condition">
+                    <textarea id="painDescription" name="painDescription" placeholder="Pain Description"></textarea>
+                    <input type="text" id="painIntensity" name="painIntensity" placeholder="Pain Intensity">   
+                    <input type="text" id="caloriesIntake" name="caloriesIntake" placeholder="Calories Intake">
+                    <input type="text" id="currentHealthConditions" name="currentHealthConditions" placeholder="Current Health Condition">
                 </div>
                 
                 <button type="submit" name="UserProfile">Submit</button>

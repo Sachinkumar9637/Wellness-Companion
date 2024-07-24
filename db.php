@@ -57,7 +57,7 @@ mysqli_query($conn, "CREATE TABLE IF NOT EXISTS tblUserProfile (
   PainIntensity VARCHAR(45) NULL,
   CaloriesIntake VARCHAR(45) NULL,
   CurrentHealthConditions VARCHAR(45) NULL,
-  tblUser_UserID INT NOT NULL,
+  UserID INT NOT NULL,
   PRIMARY KEY (HealthInfoID),
   INDEX fk_tblUserProfile_tblUser_idx (tblUser_UserID ASC),
   CONSTRAINT fk_tblUserProfile_tblUser

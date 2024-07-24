@@ -1,4 +1,5 @@
 
+
 *{
     font-family: "Arsenal", sans-serif;
     font-weight: 400;
@@ -291,7 +292,7 @@ nav ul li:hover .nav-dropdown {
     font-size: 14px;
 }
 
-/*User Sign-Up Page as well as Expert Signup Page*/
+/*Sign-Up Page*/
 .signup, .usrprofile {
     margin-top: 50px;
 }
