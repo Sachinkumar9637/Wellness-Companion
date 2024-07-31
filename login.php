@@ -24,7 +24,7 @@ if (isset($_REQUEST['login'])) {
             $_SESSION['userType']="user";
 
 
-            echo "<script>window.location.href='userDashboard.php'</script>";
+            echo "<script>window.location.href='userProfile.php'</script>";
         }
         elseif ($expertRow = mysqli_fetch_array($expertResult)) {
             $_SESSION['Email'] = $email;
