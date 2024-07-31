@@ -6,7 +6,7 @@ $checkDatabase = mysqli_query($testConnection,"show databases like 'curecornerdb
 
 if (mysqli_num_rows($checkDatabase) == 0) {
     mysqli_query($testConnection,"Create database IF NOT EXISTS `curecornerdb`");
-    echo "<script>alert('Database Created Successfully...')</script>";
+    echo "<script>alert('Database Created Successfully!')</script>";
 }
 
 $conn = mysqli_connect("localhost","root","","curecornerdb");
@@ -59,28 +59,28 @@ mysqli_query($conn, "CREATE TABLE IF NOT EXISTS tblUserProfile (
   CurrentHealthConditions VARCHAR(45) NULL,
   UserID INT NOT NULL,
   PRIMARY KEY (HealthInfoID),
-  INDEX fk_tblUserProfile_tblUser_idx (tblUser_UserID ASC),
+  INDEX fk_tblUserProfile_tblUser_idx (UserID ASC),
   CONSTRAINT fk_tblUserProfile_tblUser
-    FOREIGN KEY (tblUser_UserID)
+    FOREIGN KEY (UserID)
     REFERENCES tblUser (UserID)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION
 ) ENGINE=InnoDB");
 
-// Create tblReminder
-mysqli_query($conn, "CREATE TABLE IF NOT EXISTS tblReminder (
-  ReminderID INT NOT NULL AUTO_INCREMENT,
-  ReminderTime VARCHAR(45) NULL,
-  Frequency VARCHAR(45) NULL,
-  tblUser_UserID INT NOT NULL,
-  PRIMARY KEY (ReminderID),
-  INDEX fk_tblReminder_tblUser1_idx (tblUser_UserID ASC),
-  CONSTRAINT fk_tblReminder_tblUser1
-    FOREIGN KEY (tblUser_UserID)
-    REFERENCES tblUser (UserID)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION
-) ENGINE=InnoDB");
+// // Create tblReminder
+// mysqli_query($conn, "CREATE TABLE IF NOT EXISTS tblReminder (
+//   ReminderID INT NOT NULL AUTO_INCREMENT,
+//   ReminderTime VARCHAR(45) NULL,
+//   Frequency VARCHAR(45) NULL,
+//   tblUser_UserID INT NOT NULL,
+//   PRIMARY KEY (ReminderID),
+//   INDEX fk_tblReminder_tblUser1_idx (tblUser_UserID ASC),
+//   CONSTRAINT fk_tblReminder_tblUser1
+//     FOREIGN KEY (tblUser_UserID)
+//     REFERENCES tblUser (UserID)
+//     ON DELETE NO ACTION
+//     ON UPDATE NO ACTION
+// ) ENGINE=InnoDB");
 
 // Create tblConsultation
 mysqli_query($conn, "CREATE TABLE IF NOT EXISTS tblConsultation (
@@ -120,15 +120,6 @@ mysqli_query($conn, "CREATE TABLE IF NOT EXISTS tblExpertAvailability (
     ON UPDATE NO ACTION
 ) ENGINE=InnoDB");
 
-// Create tblExercise
-mysqli_query($conn, "CREATE TABLE IF NOT EXISTS tblExercise (
-  ExerciseID INT NOT NULL AUTO_INCREMENT,
-  ExerciseName VARCHAR(50) NULL,
-  ExerciseDescription LONGTEXT NULL,
-  ExerciseType VARCHAR(50) NULL,
-  Duration VARCHAR(50) NULL,
-  PRIMARY KEY (ExerciseID)
-) ENGINE=InnoDB");
 
 // Create tblDiet
 mysqli_query($conn, "CREATE TABLE IF NOT EXISTS tblDiet (
@@ -152,6 +143,7 @@ mysqli_query($conn, "CREATE TABLE IF NOT EXISTS tblBookings (
   BookingDate VARCHAR(50) NULL,
   tblExpert_ExpertID INT NOT NULL,
   tblUser_UserID INT NOT NULL,
+  BookingTime VARCHAR(50) NULL,
   PRIMARY KEY (BookingID),
   INDEX fk_tblBookings_tblExpert1_idx (tblExpert_ExpertID ASC),
   INDEX fk_tblBookings_tblUser1_idx (tblUser_UserID ASC),
@@ -166,29 +158,18 @@ mysqli_query($conn, "CREATE TABLE IF NOT EXISTS tblBookings (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION
 ) ENGINE=InnoDB");
+echo "<script>alert('Tables created Successfully!')</script>";
 
-echo "Tables created successfully";
+mysqli_query($conn,"INSERT INTO tblExpert (FirstName,LastName,Contact,Email,Password,Gender,Expertise) VALUES
+    ('Smeet','Parmar','1234556655','smeet@gmail.com','123456','Male','Knee Specialist'),
+    ('Shefali','Patel','1224556655','shefali11@gmail.com','123456','Female','Orthopedic'),
+    ('Rahul','Sharma','1234556475','rahul@yahoo.com','123456','Male','Neck')");
+
+mysqli_query($conn, "INSERT INTO tblUser (FirstName, LastName, Contact, Email, Password, Gender, Profession) VALUES
+    ('Aneri', 'Patel', '9876543210', 'aneri.patel@example.com', '123456', 'Female', 'Software Engineer'),
+    ('Rohan', 'Mehta', '8765432109', 'rohan.mehta@example.com', '123456', 'Male', 'Data Analyst'),
+    ('Neha', 'Sharma', '7654321098', 'neha.sharma@example.com', '123456', 'Female', 'Project Manager')");
+echo "<script>alert('Data inserted Successfully!')</script>";
 }
 
-// Create tblUserExerciseSuggestion
-mysqli_query($conn, "CREATE TABLE IF NOT EXISTS tblUserExerciseSuggestion (
-  SuggestionID INT NOT NULL AUTO_INCREMENT,
-  tblUser_UserID INT NOT NULL,
-  tblExercise_ExerciseID INT NOT NULL,
-  PRIMARY KEY (SuggestionID),
-  INDEX fk_tblUserExerciseSuggestion_tblUser1_idx (tblUser_UserID ASC),
-  INDEX fk_tblUserExerciseSuggestion_tblExercise1_idx (tblExercise_ExerciseID ASC),
-  CONSTRAINT fk_tblUserExerciseSuggestion_tblUser1
-    FOREIGN KEY (tblUser_UserID)
-    REFERENCES tblUser (UserID)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT fk_tblUserExerciseSuggestion_tblExercise1
-    FOREIGN KEY (tblExercise_ExerciseID)
-    REFERENCES tblExercise (ExerciseID)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION
-) ENGINE=InnoDB");
-
 ?>
-

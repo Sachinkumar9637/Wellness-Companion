@@ -16,6 +16,7 @@
 </head>
 
 <body class="textStyling">
+    <? include 'db.php';?>
     <header class="headerClass">
         <div class="headerContainer">
             <div class="logo">
@@ -38,7 +39,7 @@
                     <?php
                     if (!isset($_SESSION['Email']) && !isset($_SESSION['Password'])) {
                         ?>
-                        <li><a href="signup.php">Sign Up</a></li>
+                       <li><a href="userSignup.php">Sign Up</a></li>
                         <li><a href="login.php" class="login-btn">Login</a></li>
                         <?php
                     } else {
@@ -70,7 +71,7 @@
                     <?php
                     if (!isset($_SESSION['Email']) && !isset($_SESSION['Password'])) {
                         ?>
-                        <li><a href="signup.php">Sign Up</a></li>
+                        <li><a href="userSignup.php">Sign Up</a></li>
                         <?php
                     } else {
                         if ($_SESSION["userType"] == "user") {
