@@ -1,0 +1,150 @@
+* {
+    font-family: "Arsenal", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+body {
+    margin: 0;
+    width: 100%;
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
+
+/*Services Page Setup*/
+.Services-Banner{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 50px 30px;
+}
+.service-section1{
+    flex: 45%;
+}
+.service-section1 > img{
+    width: 100%;
+}
+.service-section2{
+    flex: 55%;
+    padding: 50px;
+}
+.service-section2>h1{
+    color: #1F426B;
+    font-weight: bold;
+}
+
+.Services-Middle{
+    background-color: #F6F6F9;
+    padding: 50px 150px;
+}
+.Services-Middle>h1{
+    color: #1F426B;
+    font-weight: bold;
+    text-align: center;
+}
+.Services-Middle-Container{
+    display: flex;
+}
+.Services-Middle-Details{
+    flex: 60%;
+    margin-right: 60px;
+}
+.Services-Middle-Details>div{
+    margin-bottom: 30px;
+}
+.Services-Middle-Paragraph>h3{
+    font-weight: bold;
+    color: #1F426B;
+}
+.Services-Middle-Image{
+    flex: 40%;
+}
+.Services-Middle-Image> img{
+    width: 100%;
+}
+
+.Services-Last{
+    padding: 40px 100px;
+    margin-bottom: 180px;
+}
+.Services-Last>h1{
+    color: #1F426B;
+    text-align: center;
+    font-weight: bold;
+}
+.Services-Last-Container{
+    display: flex;
+    align-items: center;
+}
+.Services-Last-Images{
+    flex: 50%;
+    padding: 20px 70px;
+}
+div.Services-position-relative {
+  position: relative;
+}
+div.Services-position-relative>img{
+    width: 100%;
+}
+div.Services-position-absolute {
+  position: absolute;
+  top: 200px;
+  left: -46px;
+}
+.Services-Last-Paragraph{
+    flex: 50%;
+}
+.Services-Last-Button>a:link, a:visited{
+    background-color: #1F426B;
+    color: white;
+    padding: 14px 35px;
+    text-align: center;
+    border-radius: 50px;
+    text-decoration: none;
+    display: inline-block;
+}
+.Services-Last-Button>a:hover, a:active {
+    background-color: #142a43;
+}
+
+@media only screen and (max-width: 800px) {
+    .Services-Banner{
+        flex-direction: column;
+        margin: 20px;
+    }
+    .Services-Middle-Container{
+        flex-direction: column-reverse;
+    }
+    .Services-Last-Container{
+        flex-direction: column;
+    }
+    .service-section2{
+        padding: 0px;
+    }
+    .Services-Middle{
+        padding: 20px;
+    }
+    .Services-Middle-Details{
+        margin-right: 0px;
+    }
+    .Services-Last{
+        padding: 20px;
+        margin-bottom: 0px;
+    }
+    div.Services-position-absolute {
+        top: 100px;
+        left: -26px;
+    }
+    div.Services-position-relative>img{
+        width: 225px;
+    }
+    div.Services-position-absolute>img{
+        width: 150px;
+    }
+    .Services-Last-Paragraph{
+        margin-top: 90px;
+    }
+    .Services-Last-Button{
+        text-align: center;
+    }
+
+}
