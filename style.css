@@ -592,3 +592,41 @@ input[type=text] {
         margin-left: auto;
     }
 }
+
+/* Styles For Healing Stories Page */
+
+/* Custom Styles */
+h2 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.card {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.card-body blockquote {
+    font-size: 16px;
+    color: #555;
+}
+
+blockquote footer {
+    font-size: 14px;
+    color: #777;
+}
+
+.rating span {
+    color: #ffc107; /* Bootstrap warning color for stars */
+}
+
+footer {
+    background-color: #343a40;
+    color: white;
+    padding: 10px 0;
+}
+
+footer p {
+    margin: 0;
+    text-align: center;
+}
+
