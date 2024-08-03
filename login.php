@@ -24,7 +24,7 @@ if (isset($_REQUEST['login'])) {
             $_SESSION['userType']="user";
 
 
-            echo "<script>window.location.href='userDashboard.php'</script>";
+            echo "<script>window.location.href='userProfile.php'</script>";
         }
         elseif ($expertRow = mysqli_fetch_array($expertResult)) {
             $_SESSION['Email'] = $email;
@@ -80,7 +80,7 @@ if (isset($_REQUEST['login'])) {
                 </form>
             </div><br>
 
-            <h5>Don't have an account? <a href="userSignup.php">Register For User</a> / <a href="userSignup.php">Register For Expert</a></h5>
+            <h5>Don't have an account? <a href="userSignup.php">Register For User</a> / <a href="expertSignup.php">Register For Expert</a></h5>
         </div>
     </div>
     <?php include 'footer.php'; ?>

@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,6 +17,7 @@
 </head>
 
 <body class="textStyling">
+    <?php require 'db.php';?>
     <header class="headerClass">
         <div class="headerContainer">
             <div class="logo">
@@ -33,12 +35,12 @@
                     <li><a href="index.php">Home</a></li>
                     <li><a href="#">About Us</a></li>
                     <li><a href="services.php">Services</a></li>
-                    <li><a href="#">Healing Stories</a></li>
+                    <li><a href="healingStories.php">Healing Stories</a></li>
                     <li><a href="#">How it works</a></li>
                     <?php
                     if (!isset($_SESSION['Email']) && !isset($_SESSION['Password'])) {
                         ?>
-                        <li><a href="signup.php">Sign Up</a></li>
+                       <li><a href="userSignup.php">Sign Up</a></li>
                         <li><a href="login.php" class="login-btn">Login</a></li>
                         <?php
                     } else {
@@ -65,12 +67,12 @@
                     <li><a href="index.php">Home</a></li>
                     <li><a href="#">About Us</a></li>
                     <li><a href="services.php">Services</a></li>
-                    <li><a href="#">Healing Stories</a></li>
+                    <li><a href="healingStories.php">Healing Stories</a></li>
                     <li><a href="#">How it works</a></li>
                     <?php
                     if (!isset($_SESSION['Email']) && !isset($_SESSION['Password'])) {
                         ?>
-                        <li><a href="signup.php">Sign Up</a></li>
+                        <li><a href="userSignup.php">Sign Up</a></li>
                         <?php
                     } else {
                         if ($_SESSION["userType"] == "user") {
