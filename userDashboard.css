@@ -54,6 +54,6 @@
     overflow: hidden; /* Hides any overflow text */
     text-overflow: ellipsis; /* Adds ellipsis (...) for overflow text */
     display: -webkit-box;
-    -webkit-line-clamp: 3; /* Limits the number of lines */
+    /* -webkit-line-clamp: 3; Limits the number of lines */
     -webkit-box-orient: vertical;
 }
