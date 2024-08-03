@@ -34,7 +34,7 @@
                     <li><a href="index.php">Home</a></li>
                     <li><a href="#">About Us</a></li>
                     <li><a href="services.php">Services</a></li>
-                    <li><a href="#">Healing Stories</a></li>
+                    <li><a href="healingStories.php">Healing Stories</a></li>
                     <li><a href="#">How it works</a></li>
                     <?php
                     if (!isset($_SESSION['Email']) && !isset($_SESSION['Password'])) {
@@ -66,7 +66,7 @@
                     <li><a href="index.php">Home</a></li>
                     <li><a href="#">About Us</a></li>
                     <li><a href="services.php">Services</a></li>
-                    <li><a href="#">Healing Stories</a></li>
+                    <li><a href="healingStories.php">Healing Stories</a></li>
                     <li><a href="#">How it works</a></li>
                     <?php
                     if (!isset($_SESSION['Email']) && !isset($_SESSION['Password'])) {

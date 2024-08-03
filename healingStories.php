@@ -7,8 +7,8 @@
     <title>Healing Stories</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Arsenal:wght@400;700&display=swap">
-    <link rel="stylesheet" href="style.css">
-    <style>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <!-- <style>
         body {
             font-family: 'Arsenal', sans-serif;
             font-size: 1.1rem;
@@ -138,11 +138,11 @@
         .card {
             margin-bottom: 1rem;
         }
-    </style>
+    </style> -->
 </head>
 
 <body>
-    <?php include 'header.php'; ?>
+<?php include 'header.php';?>
     <div class="banner">
         <img src="Images/banner.jpg" class="full-width-image" alt="Healthy and Happy client stories">
         <h1>
@@ -150,7 +150,7 @@
         </h1>
     </div>
     <?php
-    include ('db.php');
+    
     $query = "SELECT UserID, FirstName, LastName, Comments, Rating FROM tblUser WHERE Comments IS NOT NULL AND Comments != ''";
     $result = mysqli_query($conn, $query);
     ?>
