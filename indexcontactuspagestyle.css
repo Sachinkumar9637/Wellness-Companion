@@ -276,7 +276,8 @@ h2 {
 .animation-container {
     display: flex;
     white-space: nowrap;
-    animation: scroll-left-right 2s linear infinite;
+    animation: scroll-left-right 3s linear infinite;
+    margin-left: 80px;
 }
 
 .animation-container ul {
@@ -442,7 +443,8 @@ h2 {
 .team-member img {
     width: auto;
     height: auto;
-    max-width: 400px;
+    max-width: 300px;
+    border-radius: 10%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -452,6 +454,7 @@ h2 {
     font-size: 1.5em;
     margin-bottom: 10px;
     color: #142a43;
+    text-align: center;
 }
 
 .team-member p {
@@ -656,6 +659,44 @@ h2 {
     font-size: 20px;
     font-family: Josefin Sans;
 }
+
+/*about us page styles*/
+.aboutus-main {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    margin-bottom: 40px;
+}
+
+.aboutus-text-content {
+    flex: 1;
+    padding: 0 20px;
+}
+
+.image-content {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.image-content img {
+    max-width: 82%;
+    height: auto;
+    border-radius: 120px;
+}
+
+.aboutus-h1 {
+    color: #15B9D9;
+    ;
+}
+
+.aboutus-p {
+    color: #2D3A5C;
+    font-size: 23px;
+}
+
+
 
 
 
@@ -874,6 +915,47 @@ h2 {
     .ban-nav {
         width: auto;
         padding: 35px;
+    }
+
+
+    /*about us page mobile view*/
+    .aboutus-main {
+        flex-direction: column;
+        text-align: center;
+        padding: 10px;
+    }
+
+    .aboutus-text-content {
+        margin: 0;
+    }
+
+    .image-content {
+        margin: 20px 0;
+    }
+
+    .image-content img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .aboutus-h1 {
+        font-size: 1.5em;
+    }
+
+    .aboutus-p {
+        font-size: 1em;
+    }
+
+    .aboutus-text-content p,
+    .aboutus-text-content h2,
+    .aboutus-text-content ul {
+        margin-top: 20px;
+    }
+
+    .aboutus-text-content ul {
+        list-style: disc;
+        padding-left: 20px;
+        text-align: left;
     }
 
 
