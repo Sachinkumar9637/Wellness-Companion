@@ -175,17 +175,17 @@
             <h2>Physiotherapy Services From Professionals Therapists</h2>
             <div class="team-member">
                 <img src="Images/rock-team1.webp" alt="Technical Error! team member 1 image">
-                <h3>Dr. Rock</h3>
+                <h3>Dr. Rajesh</h3>
                 <p>Senior Physiotherapist</p>
             </div>
             <div class="team-member">
                 <img src="Images/ironman-team2.webp" alt="Technical Error! team member 2 image">
-                <h3>Dr. Iron man</h3>
+                <h3>Dr. Suresh</h3>
                 <p>Orthopedic Specialist</p>
             </div>
             <div class="team-member">
                 <img src="Images/wonderwoman-team3.webp" alt="Technical Error! team member 3 image">
-                <h3>Dr. Wonder Woman</h3>
+                <h3>Dr. Anjali</h3>
                 <p>Rehabilitation Expert</p>
             </div>
         </section>

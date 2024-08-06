@@ -33,7 +33,7 @@
             <div class="nav-menu">
                 <ul>
                     <li><a href="index.php">Home</a></li>
-                    <li><a href="#">About Us</a></li>
+                    <li><a href="aboutus.php">About Us</a></li>
                     <li><a href="services.php">Services</a></li>
                     <li><a href="healingStories.php">Healing Stories</a></li>
                     <li><a href="#">How it works</a></li>
@@ -65,7 +65,7 @@
             <nav>
                 <ul>
                     <li><a href="index.php">Home</a></li>
-                    <li><a href="#">About Us</a></li>
+                    <li><a href="aboutus.php">About Us</a></li>
                     <li><a href="services.php">Services</a></li>
                     <li><a href="healingStories.php">Healing Stories</a></li>
                     <li><a href="#">How it works</a></li>
