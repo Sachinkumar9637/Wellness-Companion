@@ -134,8 +134,8 @@
                         <option value="Sales Manager">Sales Manager</option>
                         <option value="Marketing Specialist">Marketing Specialist</option>
                     </select>
-                    <input type="text" id="height" name="height" placeholder="Height">
-                    <input type="text" id="weight" name="weight" placeholder="Weight">
+                    <input type="text" id="height" name="height" placeholder="Height in CM">
+                    <input type="text" id="weight" name="weight" placeholder="Weight in KG">
                 </div>
 
                 <div class="form-section">
