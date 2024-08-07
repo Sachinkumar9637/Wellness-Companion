@@ -1,4 +1,5 @@
 <?php
+session_start();
 include ("db.php");
 $error = "";
 $msg = "";
@@ -23,14 +24,14 @@ if (isset($_REQUEST['login'])) {
             $_SESSION['userType']="user";
 
 
-            echo "<script>window.location.href='userProfile.php'</script>";
+            header("Location: userProfile.php");
         }
         elseif ($expertRow = mysqli_fetch_array($expertResult)) {
             $_SESSION['Email'] = $email;
             $_SESSION['Password'] = $password;
             $_SESSION['userType']="expert";
 
-            echo "<script>window.location.href='expertDashboard.php'</script>";
+            header("Location: expertDashboard.php");
         }
         else {
             $error = "<p class='alert alert-warning'>Email or Password does not match!</p>";
