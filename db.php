@@ -86,27 +86,6 @@ mysqli_query($conn, "CREATE TABLE IF NOT EXISTS tblUserProfile (
 //     ON UPDATE NO ACTION
 // ) ENGINE=InnoDB");
 
-// Create tblConsultation
-mysqli_query($conn, "CREATE TABLE IF NOT EXISTS tblConsultation (
-  ConsultationID INT NOT NULL AUTO_INCREMENT,
-  ConsultationDate DATE NULL,
-  KeyNotes VARCHAR(45) NULL,
-  tblUser_UserID INT NOT NULL,
-  tblExpert_ExpertID INT NOT NULL,
-  PRIMARY KEY (ConsultationID),
-  INDEX fk_tblConsultation_tblUser1_idx (tblUser_UserID ASC),
-  INDEX fk_tblConsultation_tblExpert1_idx (tblExpert_ExpertID ASC),
-  CONSTRAINT fk_tblConsultation_tblUser1
-    FOREIGN KEY (tblUser_UserID)
-    REFERENCES tblUser (UserID)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT fk_tblConsultation_tblExpert1
-    FOREIGN KEY (tblExpert_ExpertID)
-    REFERENCES tblExpert (ExpertID)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION
-) ENGINE=InnoDB");
 
 // Create tblExpertAvailability
 mysqli_query($conn, "CREATE TABLE IF NOT EXISTS tblExpertAvailability (
@@ -148,6 +127,8 @@ mysqli_query($conn, "CREATE TABLE IF NOT EXISTS tblBookings (
   tblExpert_ExpertID INT NOT NULL,
   tblUser_UserID INT NOT NULL,
   BookingTime VARCHAR(50) NULL,
+  BookingType VARCHAR(250) NULL,
+  BookingStatus VARCHAR(150) NULL,
   PRIMARY KEY (BookingID),
   INDEX fk_tblBookings_tblExpert1_idx (tblExpert_ExpertID ASC),
   INDEX fk_tblBookings_tblUser1_idx (tblUser_UserID ASC),

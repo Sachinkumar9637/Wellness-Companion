@@ -347,9 +347,11 @@ nav ul li:hover .nav-dropdown {
 
 .signupForm {
     margin: 50px 390px;
+    border:2px solid #142a43 ;
+    border-radius: 7px;
 }
 
-.signup-form>h1 {
+.signup-form>h3 {
     text-align: center;
     color: #142a43;
     margin-top: 20px;
