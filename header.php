@@ -35,12 +35,13 @@
                     <li><a href="index.php">Home</a></li>
                     <li><a href="aboutus.php">About Us</a></li>
                     <li><a href="services.php">Services</a></li>
+                    <ul><a href="services.php">Services</a></ul>
                     <li><a href="healingStories.php">Healing Stories</a></li>
                     <li><a href="#">How it works</a></li>
                     <?php
                     if (!isset($_SESSION['Email']) && !isset($_SESSION['Password'])) {
                         ?>
-                       <li><a href="userSignup.php">Sign Up</a></li>
+                       <li><a href="SignUp.php">Sign Up</a></li>
                         <li><a href="login.php" class="login-btn">Login</a></li>
                         <?php
                     } else {
@@ -72,7 +73,7 @@
                     <?php
                     if (!isset($_SESSION['Email']) && !isset($_SESSION['Password'])) {
                         ?>
-                        <li><a href="userSignup.php">Sign Up</a></li>
+                        <li><a href="SignUp.php">Sign Up</a></li>
                         <?php
                     } else {
                         if ($_SESSION["userType"] == "user") {
