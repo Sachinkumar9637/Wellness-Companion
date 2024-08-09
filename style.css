@@ -195,12 +195,46 @@ nav ul li a {
     display: block;
 }
 
+nav ul li:hover > a {
+    background-color: #f1f1f1;
+    color: #99D3E1;
+}
+
 .nav-dropdown {
     display: none;
     position: absolute;
+    top: 100%;
+    left: 0;
     background-color: #f9f9f9;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
     z-index: 1;
+    width: 200px;
+}
+
+.nav-dropdown ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: block;
+}
+.nav-dropdown ul li {
+    padding: 0;
+}
+.nav-dropdown ul li a {
+    padding: 5px 0px;
+    color: #333;
+    text-decoration: none;
+    display: block;
+    white-space: nowrap;
+}
+
+.nav-dropdown ul li a:hover {
+    background-color: #e1e1e1;
+    color: #000;
+}
+
+nav ul li:hover .nav-dropdown {
+    display: block;
 }
 
 .nav-dropdown a {
