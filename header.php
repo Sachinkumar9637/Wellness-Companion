@@ -65,7 +65,17 @@
                 <ul>
                     <li><a href="index.php">Home</a></li>
                     <li><a href="aboutus.php">About Us</a></li>
-                    <li><a href="services.php">Services</a></li>
+                    <li>
+                        <a href="lowBackPain.php">Services</a>
+                        <div class="nav-dropdown">
+                            <ul>
+                                <li><a href="lowBackPain.php">Low BackPain</a></li>
+                                <li><a href="neckPain.php">Neck Pain</a></li>
+                                <li><a href="shoulderPain.php">Shoulder Pain</a></li>
+                                <li><a href="kneePain.php">Knee Pain</a></li>
+                            </ul>
+                        </div>
+                    </li>
                     <li><a href="healingStories.php">Healing Stories</a></li>
                     <li><a href="#">How it works</a></li>
                     <?php
