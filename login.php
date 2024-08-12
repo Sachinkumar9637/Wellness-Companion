@@ -18,22 +18,20 @@ if (isset($_REQUEST['login'])) {
         $expertResult = mysqli_query($conn, $expertQuery);
 
         if ($userRow = mysqli_fetch_array($userResult)) {
-            $_SESSION['UserID']=$userRow['UserID'];
+            $_SESSION['UserID'] = $userRow['UserID'];
             $_SESSION['Email'] = $email;
             $_SESSION['Password'] = $password;
-            $_SESSION['userType']="user";
+            $_SESSION['userType'] = "user";
 
 
             header("Location: userProfile.php");
-        }
-        elseif ($expertRow = mysqli_fetch_array($expertResult)) {
+        } elseif ($expertRow = mysqli_fetch_array($expertResult)) {
             $_SESSION['Email'] = $email;
             $_SESSION['Password'] = $password;
-            $_SESSION['userType']="expert";
+            $_SESSION['userType'] = "expert";
 
             header("Location: expertDashboard.php");
-        }
-        else {
+        } else {
             $error = "<p class='alert alert-warning'>Email or Password does not match!</p>";
         }
     } else {

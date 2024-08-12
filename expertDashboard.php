@@ -2,27 +2,56 @@
 session_start();
 include ("db.php");
 
+// Check if the user is logged in and is an expert
 if (!isset($_SESSION['userType']) || $_SESSION['userType'] !== 'expert') {
     header("Location: login.php");
     exit();
 }
 
+// Get the expert's email from the session
 $expertEmail = $_SESSION['Email'];
 
+// Fetch expert details
 $expertQuery = "SELECT * FROM tblExpert WHERE Email='$expertEmail'";
 $expertResult = mysqli_query($conn, $expertQuery);
 
 if ($expertRow = mysqli_fetch_array($expertResult)) {
     $expertName = $expertRow['FirstName'] . ' ' . $expertRow['LastName'];
-    $expertID = $expertRow['ExpertID']; 
+    $expertID = $expertRow['ExpertID'];
     $expertise = $expertRow['Expertise'];
 } else {
     echo "<p class='alert alert-warning'>Expert not found!</p>";
     exit();
 }
 
+// Handle confirm or cancel action
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && isset($_POST['BookingID'])) {
+    $bookingID = $_POST['BookingID'];
+    $action = $_POST['action'];
+
+    if ($action == 'confirm') {
+        $newStatus = 'Confirmed';
+    } elseif ($action == 'cancel') {
+        $newStatus = 'Cancelled';
+    } else {
+        $newStatus = null;
+    }
+
+    if ($newStatus) {
+        $updateQuery = "UPDATE tblBookings SET BookingStatus='$newStatus' WHERE BookingID='$bookingID' AND tblExpert_ExpertID='$expertID'";
+        $updateResult = mysqli_query($conn, $updateQuery);
+
+        if ($updateResult) {
+            echo "<script>alert('Booking status updated successfully!');</script>";
+        } else {
+            echo "<script>alert('Failed to update booking status.');</script>";
+        }
+    }
+}
+
+// Fetch bookings for the expert
 $bookingQuery = "
-    SELECT b.BookingDate, b.BookingTime, b.BookingType, b.BookingStatus, u.FirstName AS UserFirstName, u.LastName AS UserLastName
+    SELECT b.BookingID, b.BookingDate, b.BookingTime, b.BookingType, b.BookingStatus, u.FirstName AS UserFirstName, u.LastName AS UserLastName
     FROM tblBookings b
     JOIN tblUser u ON b.tblUser_UserID = u.UserID
     WHERE b.tblExpert_ExpertID = '$expertID'
@@ -76,7 +105,9 @@ $bookingResult = mysqli_query($conn, $bookingQuery);
                 <div class="appointments">
                     <?php while ($bookingRow = mysqli_fetch_array($bookingResult)): ?>
                         <div class="appointment">
-                            <p class="userName"><?php echo htmlspecialchars($bookingRow['UserFirstName']); ?></p>
+                            <p class="userName">
+                                <?php echo htmlspecialchars($bookingRow['UserFirstName'] . ' ' . $bookingRow['UserLastName']); ?>
+                            </p>
                             <p class="timeDate"> <i class="fas fa-clock"></i> Time:
                                 <?php echo htmlspecialchars($bookingRow['BookingTime']); ?> | Date:
                                 <?php echo htmlspecialchars($bookingRow['BookingDate']); ?>
@@ -92,6 +123,16 @@ $bookingResult = mysqli_query($conn, $bookingQuery);
                                         <?php echo htmlspecialchars($bookingRow['BookingStatus']); ?>
                                     </p>
                                 </div>
+                                <div class="appointment-actions">
+                                    <form method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
+                                        <input type="hidden" name="BookingID"
+                                            value="<?php echo htmlspecialchars($bookingRow['BookingID']); ?>">
+                                        <button type="submit" name="action" value="confirm"
+                                            class="btn btn-success">Confirm</button>
+                                        <button type="submit" name="action" value="cancel"
+                                            class="btn btn-danger">Cancel</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     <?php endwhile; ?>
@@ -100,7 +141,6 @@ $bookingResult = mysqli_query($conn, $bookingQuery);
                 <p>No bookings found.</p>
             <?php endif; ?>
         </div>
-
     </main>
     <?php include 'footer.php'; ?>
 </body>

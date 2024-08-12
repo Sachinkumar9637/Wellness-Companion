@@ -1,129 +1,142 @@
-
 body {
-            font-family: 'Arsenal', sans-serif;
-            font-size: 1.1rem;
-            /* Increase font size */
-        }
+    font-family: 'Arsenal', sans-serif;
+    font-size: 1.1rem;
+    background-color: #f9f9f9; /* Add a light background color for better contrast */
+}
 
-        header *,
-        footer * {
-            font-family: inherit !important;
-            font-size: initial !important;
-            /* Keep default font size */
-        }
+header *,
+footer * {
+    font-family: inherit !important;
+    font-size: initial !important;
+}
 
-        .banner {
-            position: relative;
-            text-align: center;
-            color: white;
-            overflow: hidden;
-            /* Ensure content does not overflow */
-        }
+.banner {
+    position: relative;
+    text-align: center;
+    color: white;
+    overflow: hidden;
+}
 
-        .banner img {
-            width: 100%;
-            height: auto;
-            /* Maintain aspect ratio */
-            max-height: 800px;
-            object-fit: cover;
-            opacity: 0.8;
-            /* Scale the image to fit within the container */
-        }
+.banner img {
+    width: 100%;
+    height: auto;
+    max-height: 600px;
+    object-fit: cover;
+    opacity: 0.8;
+}
 
-        .banner-text {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: #2d3a5c;
-        }
+.banner-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2.5vw;
+    font-weight: bold;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+}
 
-        .full-width-image {
-            width: 100%;
-            height: auto;
-            /* Adjusts height to maintain aspect ratio */
-            display: block;
-            /* Removes extra space below the image */
-        }
+.stories-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
 
-        .stories-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1rem;
-            /* Space between cards */
-            padding: 1rem;
-        }
+.story-card {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
 
-        .story-card {
-            background-color: #fff;
-            border: 2px solid #2d3a5c;
-            border-radius: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            height: 100%;
-        }
+.story-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
 
-        .story-card h2 {
-            font-size: 1.5rem;
-            color: navy;
-            font-weight: bolder;
+.story-card .card-title {
+    font-weight: bold;
+    color: #2d3a5c;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
 
-        }
+.story-card .card-text {
+    font-size: 1rem;
+    color: #333;
+}
 
-        .story-card p {
-            height: 100px;
-            overflow: hidden;
-        }
+.story-card .read-more {
+    color: #007bff;
+    font-weight: bold;
+    margin-top: 10px;
+}
 
-        .story-card footer {
-            color: #777;
-            font-size: 14px;
-            margin-top: 10px;
-        }
+.story-card .read-more:hover {
+    text-decoration: none;
+}
 
-        .rating {
-            color: #ffc107;
-            font-size: 18px;
-        }
+.story-card .rating {
+    color: #f39c12;
+    font-size: 1.2rem;
+}
 
-        .faq-section {
-            margin-top: 50px;
-            margin-bottom: 50px;
-        }
+.faq-section .card-header .btn-link {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #2d3a5c;
+}
 
-        .faq-section h2 {
-            color: #2d3a5c;
-            margin-bottom: 20px;
-        }
+.faq-section .card-body {
+    font-size: 1rem;
+    line-height: 1.6;
+}
 
-        .faq-section .card-header {
-            background-color: #f8f9fa;
-            cursor: pointer;
-        }
+@media (max-width: 768px) {
+    .stories-container {
+        flex-direction: column;
+    }
 
-        .faq-section .card-header:hover {
-            background-color: #e2e6ea;
-        }
+    .story-card {
+        width: 100%;
+    }
 
-        .card-columns {
-            column-count: 1;
-        }
+    .story-card .card-title {
+        font-size: 1.2rem;
+    }
+    
+    .story-card .card-text {
+        font-size: 0.9rem;
+    }
+}
 
-        @media (min-width: 576px) {
-            .card-columns {
-                column-count: 2;
-            }
-        }
+@media (max-width: 576px) {
+    .banner-text {
+        font-size: 4vw;
+    }
+    
+    .story-card .card-title {
+        font-size: 1.1rem;
+    }
+    
+    .story-card .card-text {
+        font-size: 0.85rem;
+    }
+}
 
-        @media (min-width: 768px) {
-            .card-columns {
-                column-count: 3;
-            }
-        }
+@media (min-width: 992px) {
+    .stories-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+}
 
-        .card {
-            margin-bottom: 1rem;
-        }
+@media (min-width: 1200px) {
+    .banner-text {
+        font-size: 3vw;
+    }
+}
