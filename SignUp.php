@@ -8,6 +8,10 @@ function sanitizeInput($data) {
     return htmlspecialchars(strip_tags(trim($data)));
 }
 
+function validateAlpha($data) {
+    return preg_match('/^[a-zA-Z]+$/', $data);
+}
+
 if (isset($_REQUEST['registration_user'])) {
     $firstName = sanitizeInput($_REQUEST['FirstName']);
     $lastName = sanitizeInput($_REQUEST['LastName']);
@@ -18,11 +22,11 @@ if (isset($_REQUEST['registration_user'])) {
     $profession = sanitizeInput($_REQUEST['Profession']);
 
     // Validation
-    if (empty($firstName)) {
-        $error .= "<p class='alert alert-warning'>First Name is required.</p>";
+    if (empty($firstName) || !validateAlpha($firstName)) {
+        $error .= "<p class='alert alert-warning'>Valid First Name is required (letters only).</p>";
     }
-    if (empty($lastName)) {
-        $error .= "<p class='alert alert-warning'>Last Name is required.</p>";
+    if (empty($lastName) || !validateAlpha($lastName)) {
+        $error .= "<p class='alert alert-warning'>Valid Last Name is required (letters only).</p>";
     }
     if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $error .= "<p class='alert alert-warning'>Valid Email is required.</p>";
@@ -36,8 +40,8 @@ if (isset($_REQUEST['registration_user'])) {
     if (empty($password) || strlen($password) < 6) {
         $error .= "<p class='alert alert-warning'>Password must be at least 6 characters long.</p>";
     }
-    if (empty($profession)) {
-        $error .= "<p class='alert alert-warning'>Profession is required.</p>";
+    if (empty($profession) || !validateAlpha($profession)) {
+        $error .= "<p class='alert alert-warning'>Valid Profession is required (letters only).</p>";
     }
 
     if (empty($error)) {
@@ -76,11 +80,11 @@ if (isset($_REQUEST['registration_expert'])) {
     $expertise = sanitizeInput($_REQUEST['Expertise']);
 
     // Validation
-    if (empty($firstName)) {
-        $error .= "<p class='alert alert-warning'>First Name is required.</p>";
+    if (empty($firstName) || !validateAlpha($firstName)) {
+        $error .= "<p class='alert alert-warning'>Valid First Name is required (letters only).</p>";
     }
-    if (empty($lastName)) {
-        $error .= "<p class='alert alert-warning'>Last Name is required.</p>";
+    if (empty($lastName) || !validateAlpha($lastName)) {
+        $error .= "<p class='alert alert-warning'>Valid Last Name is required (letters only).</p>";
     }
     if (empty($phone) || !preg_match('/^[0-9]{10}$/', $phone)) {
         $error .= "<p class='alert alert-warning'>Valid Phone Number is required.</p>";
@@ -94,8 +98,8 @@ if (isset($_REQUEST['registration_expert'])) {
     if (empty($gender)) {
         $error .= "<p class='alert alert-warning'>Gender is required.</p>";
     }
-    if (empty($expertise)) {
-        $error .= "<p class='alert alert-warning'>Expertise is required.</p>";
+    if (empty($expertise) || !validateAlpha($expertise)) {
+        $error .= "<p class='alert alert-warning'>Valid Expertise is required (letters only).</p>";
     }
 
     if (empty($error)) {
@@ -124,6 +128,7 @@ if (isset($_REQUEST['registration_expert'])) {
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html>
