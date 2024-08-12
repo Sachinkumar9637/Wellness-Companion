@@ -38,7 +38,7 @@
                     <li><a href="shoulderPain.php">Shoulder Pain</a></li>
                     <li><a href="kneePain.php">Knee Pain</a></li>
                     <li><a href="healingStories.php">Healing Stories</a></li>
-                    <li><a href="#">How it works</a></li>
+                
                     <?php
                     if (!isset($_SESSION['Email']) && !isset($_SESSION['Password'])) {
                         ?>
@@ -80,7 +80,7 @@
                         </div>
                     </li>
                     <li><a href="healingStories.php">Healing Stories</a></li>
-                    <li><a href="#">How it works</a></li>
+                 
                     <?php
                     if (!isset($_SESSION['Email']) && !isset($_SESSION['Password'])) {
                         ?>

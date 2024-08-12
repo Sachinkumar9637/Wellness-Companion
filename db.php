@@ -11,7 +11,7 @@ if (mysqli_num_rows($checkDatabase) == 0) {
 
 $conn = mysqli_connect("localhost","root","","curecornerdb");
 
-$checkTable = mysqli_query($conn,"show tables like 'tbluser'");
+$checkTable = mysqli_query($conn,"show tables like 'tblBookings'");
 
 if (mysqli_num_rows($checkTable) == 0) {
 

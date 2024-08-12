@@ -1,3 +1,4 @@
+<?php session_start();?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,7 +13,9 @@
 </head>
 
 <body>
-    <?php require ('header.php'); ?>
+    <?php require ('header.php'); 
+
+?>
     <div class="banner">
         <img src="Images/banner.jpg" class="full-width-image" alt="Healthy and Happy client stories">
         <h1>

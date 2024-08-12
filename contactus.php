@@ -1,3 +1,4 @@
+<?php session_start();?>
 <!DOCTYPE html>
 <html>
 
@@ -13,7 +14,9 @@
 </head>
 
 <body>
-	<?php include 'header.php'; ?>
+	<?php include 'header.php'; 
+
+?>
 	<main>
 		<section class="banner">
 			<div class="banner-content">
