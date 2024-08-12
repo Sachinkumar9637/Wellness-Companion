@@ -13,7 +13,7 @@
     flex-direction: column;
     width: 100%;
     max-width: 300px; /* Maximum width for each card */
-    height: 400px; /* Fixed height for consistency */
+    height: auto; /* Removed fixed height to allow content to dictate height */
     margin: 0 auto; /* Centers the card horizontally */
     background-color: #fff; /* White background for the card */
     border-radius: 8px; /* Rounded corners for the card */
@@ -30,30 +30,40 @@
 /* Image styling */
 .card-img-top {
     width: 100%;
-    height: 200px; /* Fixed height for image */
+    height: 350px; /* Increased height for better visibility */
     object-fit: cover; /* Ensures image covers the area */
 }
 
 /* Card body styling */
 .card-body {
     padding: 15px; /* Padding inside the card body */
-    flex: 1; /* Allows the card body to grow and fill available space */
     display: flex;
     flex-direction: column;
+    flex-grow: 1; /* Ensures the body grows to fill available space */
 }
 
 /* Title styling */
 .card-title {
     margin-bottom: 0.5rem; /* Space below title */
     font-size: 1.25rem; /* Adjust font size as needed */
+    font-weight: bold;
+    color: #2d3a5c; /* Match the color with other text styles */
 }
 
 /* Text styling */
 .card-text {
-    flex: 1; /* Allows text to grow and fill available space */
-    overflow: hidden; /* Hides any overflow text */
+    flex-grow: 1; /* Allows text to grow and fill available space */
+    overflow-y: auto; /* Allows scrolling if the text overflows */
     text-overflow: ellipsis; /* Adds ellipsis (...) for overflow text */
-    display: -webkit-box;
-    /* -webkit-line-clamp: 3; Limits the number of lines */
-    -webkit-box-orient: vertical;
+    display: block; /* Ensures text is displayed as a block */
+    line-height: 1.5; /* Increase line height for better readability */
+    max-height: 100px; /* Limits the height of the text to ensure visibility */
+    color: #333; /* Darker text for better visibility */
+}
+
+/* Additional styling for instructions */
+.instructions {
+    margin-top: 10px; /* Space above the instructions */
+    color: #555; /* Slightly lighter text color for instructions */
+    font-size: 1rem; /* Adjust font size as needed */
 }
