@@ -1,28 +1,78 @@
 <?php
-require ('db.php');
+require('db.php');
 session_start();
 
 $error = "";
 $msg = "";
 
-if (isset($_POST['UserProfile'])) {
-    $age = $_POST['age'];
-    $profession = $_POST['profession'];
-    $height = $_POST['height'];
-    $weight = $_POST['weight'];
-    $workEnvironment = $_POST['workEnvironment'];
-    $workType = $_POST['workType'];
-    $sittingDuration = $_POST['sittingDuration'];
-    $standingDuration = $_POST['standingDuration'];
-    $painArea = $_POST['painArea'];
-    $painIntensity = $_POST['painIntensity'];
-    $caloriesIntake = $_POST['caloriesIntake'];
-    $currentHealthConditions = $_POST['currentHealthConditions'];
+function sanitizeInput($data) {
+    return htmlspecialchars(strip_tags(trim($data)));
+}
+
+function isAlphaSpace($data) {
+    return preg_match('/^[a-zA-Z\s]+$/', $data);
+}
+
+// Check if form is submitted
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['UserProfile'])) {
+    // Sanitize and validate input
+    $age = isset($_POST['age']) ? sanitizeInput($_POST['age']) : '';
+    $profession = isset($_POST['profession']) ? sanitizeInput($_POST['profession']) : '';
+    $height = isset($_POST['height']) ? sanitizeInput($_POST['height']) : '';
+    $weight = isset($_POST['weight']) ? sanitizeInput($_POST['weight']) : '';
+    $workEnvironment = isset($_POST['workEnvironment']) ? sanitizeInput($_POST['workEnvironment']) : '';
+    $workType = isset($_POST['workType']) ? sanitizeInput($_POST['workType']) : '';
+    $sittingDuration = isset($_POST['sittingDuration']) ? sanitizeInput($_POST['sittingDuration']) : '';
+    $standingDuration = isset($_POST['standingDuration']) ? sanitizeInput($_POST['standingDuration']) : '';
+    $painArea = isset($_POST['painArea']) ? sanitizeInput($_POST['painArea']) : '';
+    $painDescription = isset($_POST['painDescription']) ? sanitizeInput($_POST['painDescription']) : '';
+    $painIntensity = isset($_POST['painIntensity']) ? sanitizeInput($_POST['painIntensity']) : '';
+    $caloriesIntake = isset($_POST['caloriesIntake']) ? sanitizeInput($_POST['caloriesIntake']) : '';
+    $currentHealthConditions = isset($_POST['currentHealthConditions']) ? sanitizeInput($_POST['currentHealthConditions']) : '';
     $userID = $_SESSION['UserID'];
+
     // Validate input
-    if (empty($age) || empty($profession) || empty($height) || empty($weight) || empty($workEnvironment) || empty($workType) || empty($sittingDuration) || empty($standingDuration) || empty($painArea) || empty($painIntensity) || empty($caloriesIntake) || empty($currentHealthConditions)) {
-        $error = "<p class='alert alert-warning'>Please fill all fields</p>";
-    } else {
+    if (empty($age) || !is_numeric($age)) {
+        $error .= "<p class='alert alert-warning'>Age must be a number and should not be empty.</p>";
+    }
+    if (empty($profession)) {
+        $error .= "<p class='alert alert-warning'>Profession is required.</p>";
+    }
+    if (empty($height) || !is_numeric($height)) {
+        $error .= "<p class='alert alert-warning'>Height must be a number and should not be empty.</p>";
+    }
+    if (empty($weight) || !is_numeric($weight)) {
+        $error .= "<p class='alert alert-warning'>Weight must be a number and should not be empty.</p>";
+    }
+    if (empty($workEnvironment)) {
+        $error .= "<p class='alert alert-warning'>Work Environment is required.</p>";
+    }
+    if (empty($workType)) {
+        $error .= "<p class='alert alert-warning'>Work Type is required.</p>";
+    }
+    if (empty($sittingDuration) || !is_numeric($sittingDuration)) {
+        $error .= "<p class='alert alert-warning'>Sitting Duration must be a number and should not be empty.</p>";
+    }
+    if (empty($standingDuration) || !is_numeric($standingDuration)) {
+        $error .= "<p class='alert alert-warning'>Standing Duration must be a number and should not be empty.</p>";
+    }
+    if (empty($painArea)) {
+        $error .= "<p class='alert alert-warning'>Pain Area is required.</p>";
+    }
+    if (empty($painDescription)) {
+        $error .= "<p class='alert alert-warning'>Pain Description is required.</p>";
+    }
+    if (empty($painIntensity) || !isAlphaSpace($painIntensity)) {
+        $error .= "<p class='alert alert-warning'>Pain Intensity must include only letters and should not be empty.</p>";
+    }
+    if (empty($caloriesIntake)) {
+        $error .= "<p class='alert alert-warning'>Calories Intake is required.</p>";
+    }
+    if (empty($currentHealthConditions) || !isAlphaSpace($currentHealthConditions)) {
+        $error .= "<p class='alert alert-warning'>Current Health Conditions must include only letters and should not be empty.</p>";
+    }
+
+    if (empty($error)) {
         // Check if profile already exists
         $profileQuery = "SELECT * FROM tblUserProfile WHERE UserID = '$userID'";
         $profileResult = mysqli_query($conn, $profileQuery);
@@ -38,28 +88,28 @@ if (isset($_POST['UserProfile'])) {
                     SittingDuration='$sittingDuration',
                     StandingDuration='$standingDuration',
                     PainArea='$painArea',
+                    PainDescription='$painDescription',
                     PainIntensity='$painIntensity',
                     CaloriesIntake='$caloriesIntake',
                     CurrentHealthConditions='$currentHealthConditions'
                     WHERE UserID='$userID'";
 
             if (mysqli_query($conn, $updateQuery)) {
-                $_SESSION['PainArea'] = $painArea; // Save painArea to session
+                $_SESSION['PainArea'] = $painArea;
                 echo "<script>window.location.href='userDashboard.php'</script>";
                 exit();
             } else {
                 $error = "<p class='alert alert-danger'>Error updating profile: " . mysqli_error($conn) . "</p>";
             }
         } else {
-            // Insert new profile
             $insertQuery = "INSERT INTO tblUserProfile (
-        Age, Profession, Height, Weight, WorkEnvironment, WorkType, SittingDuration, StandingDuration, PainArea, PainIntensity, CaloriesIntake, CurrentHealthConditions, UserID
-    ) VALUES (
-        '$age', '$profession', '$height', '$weight', '$workEnvironment', '$workType', '$sittingDuration', '$standingDuration', '$painArea', '$painIntensity', '$caloriesIntake', '$currentHealthConditions', '$userID'
-    )";
+                Age, Profession, Height, Weight, WorkEnvironment, WorkType, SittingDuration, StandingDuration, PainArea, PainDescription, PainIntensity, CaloriesIntake, CurrentHealthConditions, UserID
+            ) VALUES (
+                '$age', '$profession', '$height', '$weight', '$workEnvironment', '$workType', '$sittingDuration', '$standingDuration', '$painArea', '$painDescription', '$painIntensity', '$caloriesIntake', '$currentHealthConditions', '$userID'
+            )";
 
             if (mysqli_query($conn, $insertQuery)) {
-                $_SESSION['PainArea'] = $painArea; // Save painArea to session
+                $_SESSION['PainArea'] = $painArea;
                 echo "<script>window.location.href='userDashboard.php'</script>";
                 exit();
             } else {
@@ -69,7 +119,6 @@ if (isset($_POST['UserProfile'])) {
     }
 }
 ?>
-
 
 <!DOCTYPE html>
 <html>
@@ -137,8 +186,8 @@ if (isset($_POST['UserProfile'])) {
                         <option value="Sales Manager">Sales Manager</option>
                         <option value="Marketing Specialist">Marketing Specialist</option>
                     </select>
-                    <input type="text" id="height" name="height" placeholder="Height in CM">
-                    <input type="text" id="weight" name="weight" placeholder="Weight in KG">
+                    <input type="text" id="height" name="height" placeholder="Height in CM (Number Only)">
+                    <input type="text" id="weight" name="weight" placeholder="Weight in KG (Number Only)">
                 </div>
 
                 <div class="form-section">
@@ -167,8 +216,8 @@ if (isset($_POST['UserProfile'])) {
                         <option value="Volunteer">Volunteer</option>
                     </select>
 
-                    <input type="text" id="sittingDuration" name="sittingDuration" placeholder="Sitting Duration">
-                    <input type="text" id="standingDuration" name="standingDuration" placeholder="Standing Duration">
+                    <input type="text" id="sittingDuration" name="sittingDuration" placeholder="Sitting Duration Must be in Hour(Number only)">
+                    <input type="text" id="standingDuration" name="standingDuration" placeholder="Standing Duration Must be in Hour(Number only)">
                 </div>
 
                 <div class="form-section">
