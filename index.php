@@ -26,7 +26,7 @@
             <div class="banner-content">
                 <h1>Your Health, Our Priority</h1>
                 <p>We provide you exercise tips based on your conditions</p>
-                <a href="services.php" class="btn-services">Our Services</a>
+                <a href="KneePain.php" class="btn-services">Our Services</a>
             </div>
         </section>
 

@@ -1,34 +1,34 @@
 <?php
-    require('db.php');
+require ('db.php');
 session_start();
 
-    $error = "";
-    $msg = "";
+$error = "";
+$msg = "";
 
-    if (isset($_POST['UserProfile'])) {
-        $age = $_POST['age'];
-        $profession = $_POST['profession'];
-        $height = $_POST['height'];
-        $weight = $_POST['weight'];
-        $workEnvironment = $_POST['workEnvironment'];
-        $workType = $_POST['workType'];
-        $sittingDuration = $_POST['sittingDuration'];
-        $standingDuration = $_POST['standingDuration'];
-        $painArea = $_POST['painArea'];
-        $painIntensity = $_POST['painIntensity'];
-        $caloriesIntake = $_POST['caloriesIntake'];
-        $currentHealthConditions = $_POST['currentHealthConditions'];
-        $userID = $_SESSION['UserID'];
-        // Validate input
-        if (empty($age) || empty($profession) || empty($height) || empty($weight) || empty($workEnvironment) || empty($workType) || empty($sittingDuration) || empty($standingDuration) || empty($painArea) || empty($painIntensity) || empty($caloriesIntake) || empty($currentHealthConditions)) {
-            $error = "<p class='alert alert-warning'>Please fill all fields</p>";
-        } else {
-            // Check if profile already exists
-            $profileQuery = "SELECT * FROM tblUserProfile WHERE UserID = '$userID'";
-            $profileResult = mysqli_query($conn, $profileQuery);
-            if (mysqli_num_rows($profileResult) > 0) {
-                // Update existing profile
-                $updateQuery = "UPDATE tblUserProfile SET
+if (isset($_POST['UserProfile'])) {
+    $age = $_POST['age'];
+    $profession = $_POST['profession'];
+    $height = $_POST['height'];
+    $weight = $_POST['weight'];
+    $workEnvironment = $_POST['workEnvironment'];
+    $workType = $_POST['workType'];
+    $sittingDuration = $_POST['sittingDuration'];
+    $standingDuration = $_POST['standingDuration'];
+    $painArea = $_POST['painArea'];
+    $painIntensity = $_POST['painIntensity'];
+    $caloriesIntake = $_POST['caloriesIntake'];
+    $currentHealthConditions = $_POST['currentHealthConditions'];
+    $userID = $_SESSION['UserID'];
+    // Validate input
+    if (empty($age) || empty($profession) || empty($height) || empty($weight) || empty($workEnvironment) || empty($workType) || empty($sittingDuration) || empty($standingDuration) || empty($painArea) || empty($painIntensity) || empty($caloriesIntake) || empty($currentHealthConditions)) {
+        $error = "<p class='alert alert-warning'>Please fill all fields</p>";
+    } else {
+        // Check if profile already exists
+        $profileQuery = "SELECT * FROM tblUserProfile WHERE UserID = '$userID'";
+        $profileResult = mysqli_query($conn, $profileQuery);
+        if (mysqli_num_rows($profileResult) > 0) {
+            // Update existing profile
+            $updateQuery = "UPDATE tblUserProfile SET
                     Age='$age',
                     Profession='$profession',
                     Height='$height',
@@ -42,37 +42,38 @@ session_start();
                     CaloriesIntake='$caloriesIntake',
                     CurrentHealthConditions='$currentHealthConditions'
                     WHERE UserID='$userID'";
-    
-                if (mysqli_query($conn, $updateQuery)) {
-                    $_SESSION['PainArea'] = $painArea; // Save painArea to session
-                    echo "<script>window.location.href='userDashboard.php'</script>";
-                    exit();
-                } else {
-                    $error = "<p class='alert alert-danger'>Error updating profile: " . mysqli_error($conn) . "</p>";
-                }
+
+            if (mysqli_query($conn, $updateQuery)) {
+                $_SESSION['PainArea'] = $painArea; // Save painArea to session
+                echo "<script>window.location.href='userDashboard.php'</script>";
+                exit();
             } else {
-                // Insert new profile
-                $insertQuery = "INSERT INTO tblUserProfile (
+                $error = "<p class='alert alert-danger'>Error updating profile: " . mysqli_error($conn) . "</p>";
+            }
+        } else {
+            // Insert new profile
+            $insertQuery = "INSERT INTO tblUserProfile (
         Age, Profession, Height, Weight, WorkEnvironment, WorkType, SittingDuration, StandingDuration, PainArea, PainIntensity, CaloriesIntake, CurrentHealthConditions, UserID
     ) VALUES (
         '$age', '$profession', '$height', '$weight', '$workEnvironment', '$workType', '$sittingDuration', '$standingDuration', '$painArea', '$painIntensity', '$caloriesIntake', '$currentHealthConditions', '$userID'
     )";
-    
-                if (mysqli_query($conn, $insertQuery)) {
-                    $_SESSION['PainArea'] = $painArea; // Save painArea to session
-                    echo "<script>window.location.href='userDashboard.php'</script>";
-                    exit();
-                } else {
-                    $error = "<p class='alert alert-danger'>Error creating profile: " . mysqli_error($conn) . "</p>";
-                }
+
+            if (mysqli_query($conn, $insertQuery)) {
+                $_SESSION['PainArea'] = $painArea; // Save painArea to session
+                echo "<script>window.location.href='userDashboard.php'</script>";
+                exit();
+            } else {
+                $error = "<p class='alert alert-danger'>Error creating profile: " . mysqli_error($conn) . "</p>";
             }
         }
     }
-    ?>
+}
+?>
 
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -81,8 +82,9 @@ session_start();
     <link href='https://fonts.googleapis.com/css?family=Kaisei Opti' rel='stylesheet'>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
+
 <body>
-    <?php include 'header.php';?>
+    <?php include 'header.php'; ?>
     <div class="usrprofile">
         <h1>How CureCorner Works</h1>
     </div>
@@ -112,7 +114,8 @@ session_start();
     </div>
 
     <div class="userProfile">
-        <form class="userProfileForm" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST" id="userProfile_form">
+        <form class="userProfileForm" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST"
+            id="userProfile_form">
             <h1>Enter your details</h1>
 
             <div class="row">
@@ -184,16 +187,18 @@ session_start();
                         <option value="Waist">Waist</option>
                     </select>
                     <textarea id="painDescription" name="painDescription" placeholder="Pain Description"></textarea>
-                    <input type="text" id="painIntensity" name="painIntensity" placeholder="Pain Intensity">   
+                    <input type="text" id="painIntensity" name="painIntensity" placeholder="Pain Intensity">
                     <input type="text" id="caloriesIntake" name="caloriesIntake" placeholder="Calories Intake">
-                    <input type="text" id="currentHealthConditions" name="currentHealthConditions" placeholder="Current Health Condition">
+                    <input type="text" id="currentHealthConditions" name="currentHealthConditions"
+                        placeholder="Current Health Condition">
                 </div>
-                
+
                 <button type="submit" name="UserProfile">Submit</button>
             </div>
         </form>
     </div>
 
-    <?php include 'footer.php';?>
+    <?php include 'footer.php'; ?>
 </body>
+
 </html>

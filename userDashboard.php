@@ -20,24 +20,24 @@ $height = $userData["Height"];
 $weight = $userData["Weight"];
 
 //BMI API
-$BMI_API = curl_init();
-curl_setopt_array($BMI_API, [
-    CURLOPT_URL => "https://bmi-calculator9.p.rapidapi.com/BMI_Calculator?cm={$height}&kg={$weight}",
-    CURLOPT_RETURNTRANSFER => true,
-    CURLOPT_ENCODING => "",
-    CURLOPT_MAXREDIRS => 10,
-    CURLOPT_TIMEOUT => 30,
-    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-    CURLOPT_CUSTOMREQUEST => "GET",
-    CURLOPT_HTTPHEADER => [
-        "x-rapidapi-host: bmi-calculator9.p.rapidapi.com",
-        "x-rapidapi-key: 9ded8c28afmsh87e74b92c2e01abp1fcf4cjsn1a3869286822"
-    ],
-]);
+// $BMI_API = curl_init();
+// curl_setopt_array($BMI_API, [
+//     CURLOPT_URL => "https://bmi-calculator9.p.rapidapi.com/BMI_Calculator?cm={$height}&kg={$weight}",
+//     CURLOPT_RETURNTRANSFER => true,
+//     CURLOPT_ENCODING => "",
+//     CURLOPT_MAXREDIRS => 10,
+//     CURLOPT_TIMEOUT => 30,
+//     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+//     CURLOPT_CUSTOMREQUEST => "GET",
+//     CURLOPT_HTTPHEADER => [
+//         "x-rapidapi-host: bmi-calculator9.p.rapidapi.com",
+//         "x-rapidapi-key: 9ded8c28afmsh87e74b92c2e01abp1fcf4cjsn1a3869286822"
+//     ],
+// ]);
 
-$response_BMI = curl_exec($BMI_API);
-$err = curl_error($BMI_API);
-curl_close($BMI_API);
+// $response_BMI = curl_exec($BMI_API);
+// $err = curl_error($BMI_API);
+// curl_close($BMI_API);
 
 $bmi_text = "Not available"; // Default value
 
@@ -73,8 +73,9 @@ if (isset($_POST['bookAppointment'])) {
     $BookingDate = $_POST['BookingDate'];
     $BookingTime = $_POST['BookingTime'];
     $ExpertID = $_POST['tblExpert_ExpertID'];
+    $BookingType = $_POST['BookingType'];
 
-    $sql = "INSERT INTO tblbookings (BookingDate,BookingTime,tblExpert_ExpertID,tblUser_UserID) VALUES ('$BookingDate','$BookingTime','$ExpertID','$UserID')";
+    $sql = "INSERT INTO tblbookings (BookingDate,BookingTime,tblExpert_ExpertID,tblUser_UserID,BookingType) VALUES ('$BookingDate','$BookingTime','$ExpertID','$UserID','$BookingType')";
     $result = mysqli_query($conn, $sql);
 
     if ($result) {
@@ -194,63 +195,63 @@ if (isset($_POST['submitFeedback'])) {
                 <h3 class="text-center fw-bold">Exercise Recommendations</h3>
                 <?php
                 // Exercise recommendations section
-                $painArea = strtolower($userData["PainArea"]); // Get the pain area from user data
-                $curl = curl_init(); // Initialize cURL session
+                // $painArea = strtolower($userData["PainArea"]); // Get the pain area from user data
+                // $curl = curl_init(); // Initialize cURL session
                 
-                //  Set cURL options
-                curl_setopt_array($curl, [
-                    CURLOPT_URL => "https://exercisedb.p.rapidapi.com/exercises/bodyPart/{$painArea}?", // API URL
-                    CURLOPT_RETURNTRANSFER => true, // Return the response as a string
-                    CURLOPT_ENCODING => "", // Handle any encoding
-                    CURLOPT_MAXREDIRS => 10, // Maximum number of redirects
-                    CURLOPT_TIMEOUT => 30, // Maximum time to wait for a response
-                    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1, // Use HTTP/1.1
-                    CURLOPT_CUSTOMREQUEST => "GET", // Use GET request
-                    CURLOPT_HTTPHEADER => [
-                        "x-rapidapi-host: exercisedb.p.rapidapi.com", // API host
-                        "x-rapidapi-key: 9ded8c28afmsh87e74b92c2e01abp1fcf4cjsn1a3869286822" // API key
-                    ],
-                ]);
-
-                $response = curl_exec($curl); // Execute the cURL request
-                $err = curl_error($curl); // Get any error if occurred
-                curl_close($curl); // Close cURL session
+                // //  Set cURL options
+                // curl_setopt_array($curl, [
+                //     CURLOPT_URL => "https://exercisedb.p.rapidapi.com/exercises/bodyPart/{$painArea}?", // API URL
+                //     CURLOPT_RETURNTRANSFER => true, // Return the response as a string
+                //     CURLOPT_ENCODING => "", // Handle any encoding
+                //     CURLOPT_MAXREDIRS => 10, // Maximum number of redirects
+                //     CURLOPT_TIMEOUT => 30, // Maximum time to wait for a response
+                //     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1, // Use HTTP/1.1
+                //     CURLOPT_CUSTOMREQUEST => "GET", // Use GET request
+                //     CURLOPT_HTTPHEADER => [
+                //         "x-rapidapi-host: exercisedb.p.rapidapi.com", // API host
+                //         "x-rapidapi-key: 9ded8c28afmsh87e74b92c2e01abp1fcf4cjsn1a3869286822" // API key
+                //     ],
+                // ]);
                 
-                if ($err) {
-                    // Display an error message if there's a cURL error
-                    echo "<div class='alert alert-danger'>cURL Error #:" . $err . "</div>";
-                } else {
-                    // Decode the JSON response
-                    $exercises = json_decode($response, true);
-                    if (json_last_error() === JSON_ERROR_NONE) {
-                        // Check if the JSON was decoded successfully
-                        echo "<div class='exe-container'>";
-                        foreach ($exercises as $exercise) {
-                            echo "<div class='card'>";
-                            echo "<img src='" . htmlspecialchars($exercise['gifUrl']) . "' class='card-img-top' alt='" . htmlspecialchars($exercise['name']) . " gif'>";
-                            echo "<div class='card-body'>";
-                            echo "<h5 class='card-title'>" . htmlspecialchars($exercise['name']) . "</h5>";
-                            echo "<p class='card-text'><strong>Body Part:</strong> " . htmlspecialchars($exercise['bodyPart']) . "</p>";
-                            echo "<p class='card-text'><strong>Equipment:</strong> " . htmlspecialchars($exercise['equipment']) . "</p>";
-                            echo "<p class='card-text'><strong>Target:</strong> " . htmlspecialchars($exercise['target']) . "</p>";
-                            if (isset($exercise['instructions']) && is_array($exercise['instructions'])) {
-                                echo "<p class='card-text'><strong>Instructions:</strong> ";
-                                foreach ($exercise['instructions'] as $value) {
-                                    echo htmlspecialchars($value) . " ";
-                                }
-                                echo "</p>";
-                            } else {
-                                echo "<p class='card-text'>No detailed instructions available.</p>";
-                            }
-                            echo "</div>";
-                            echo "</div>";
-                        }
-                        echo "</div>";
-                    } else {
-                        // Display an error message if there's a JSON decoding error
-                        echo "<div class='alert alert-danger'>Error decoding JSON response.</div>";
-                    }
-                }
+                // $response = curl_exec($curl); // Execute the cURL request
+                // $err = curl_error($curl); // Get any error if occurred
+                // curl_close($curl); // Close cURL session
+                
+                // if ($err) {
+                //     // Display an error message if there's a cURL error
+                //     echo "<div class='alert alert-danger'>cURL Error #:" . $err . "</div>";
+                // } else {
+                //     // Decode the JSON response
+                //     $exercises = json_decode($response, true);
+                //     if (json_last_error() === JSON_ERROR_NONE) {
+                //         // Check if the JSON was decoded successfully
+                //         echo "<div class='exe-container'>";
+                //         foreach ($exercises as $exercise) {
+                //             echo "<div class='card'>";
+                //             echo "<img src='" . htmlspecialchars($exercise['gifUrl']) . "' class='card-img-top' alt='" . htmlspecialchars($exercise['name']) . " gif'>";
+                //             echo "<div class='card-body'>";
+                //             echo "<h5 class='card-title'>" . htmlspecialchars($exercise['name']) . "</h5>";
+                //             echo "<p class='card-text'><strong>Body Part:</strong> " . htmlspecialchars($exercise['bodyPart']) . "</p>";
+                //             echo "<p class='card-text'><strong>Equipment:</strong> " . htmlspecialchars($exercise['equipment']) . "</p>";
+                //             echo "<p class='card-text'><strong>Target:</strong> " . htmlspecialchars($exercise['target']) . "</p>";
+                //             if (isset($exercise['instructions']) && is_array($exercise['instructions'])) {
+                //                 echo "<p class='card-text'><strong>Instructions:</strong> ";
+                //                 foreach ($exercise['instructions'] as $value) {
+                //                     echo htmlspecialchars($value) . " ";
+                //                 }
+                //                 echo "</p>";
+                //             } else {
+                //                 echo "<p class='card-text'>No detailed instructions available.</p>";
+                //             }
+                //             echo "</div>";
+                //             echo "</div>";
+                //         }
+                //         echo "</div>";
+                //     } else {
+                //         // Display an error message if there's a JSON decoding error
+                //         echo "<div class='alert alert-danger'>Error decoding JSON response.</div>";
+                //     }
+                // }
                 ?>
 
             </div>
@@ -280,6 +281,14 @@ if (isset($_POST['submitFeedback'])) {
                                 <?php
                             }
                             ?>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="BookingType" class="form-label">Booking Type</label>
+                        <select class="form-select" id="BookingType" name="BookingType" required>
+                            <option value="" disabled selected>Select booking type</option>
+                            <option value="online">Online</option>
+                            <option value="in-person">In-person</option>
                         </select>
                     </div>
                     <button type="submit" id="bookAppointment" name="bookAppointment" class="btn btn-primary">Book
