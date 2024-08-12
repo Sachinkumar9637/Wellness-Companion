@@ -93,9 +93,11 @@ div.Services-position-absolute {
 .Services-Last-Paragraph{
     flex: 50%;
 }
+.Services-Last-Button>a{
+    color: white;
+}
 .Services-Last-Button>a:link, a:visited{
     background-color: #1F426B;
-    color: white;
     padding: 14px 35px;
     text-align: center;
     border-radius: 50px;

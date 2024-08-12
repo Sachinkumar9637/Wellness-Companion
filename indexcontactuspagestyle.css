@@ -696,8 +696,111 @@ h2 {
     font-size: 23px;
 }
 
+/*expert Dashboard styles*/
 
+.dashboard-container {
+    padding: 50px;
+}
 
+.ex_color {
+    color: grey;
+}
+
+.appointments {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.appointment {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    flex: 1;
+    min-width: 250px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.appointment_tag {
+    font-size: 1.5em;
+    display: flex;
+    margin: 35px 0px 20px 0px;
+}
+
+.fa-user {
+    padding: 10px 8px;
+
+}
+
+.line {
+    flex-grow: 1;
+    height: 0.5px;
+    background-color: black;
+    margin-left: 20px;
+    margin-top: 30px;
+}
+
+.userName {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.timeDate {
+    font-size: 0.9em;
+    color: black;
+}
+
+.icon {
+    font-size: 1.2em;
+    vertical-align: middle;
+}
+
+.appointment-details {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.appointment-details div {
+    width: 48%;
+}
+
+.appointmentType,
+.status {
+    font-weight: bold;
+    margin: 0;
+    margin-top: 5px;
+}
+
+.c_grey {
+    color: grey;
+}
+
+.status.Confirmed {
+    color: green;
+}
+
+.status.Declined {
+    color: red;
+}
+
+.status.Pending {
+    color: orange;
+}
+
+.login-btn {
+    background-color: #2D3A5C;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.login .login-btn:hover {
+    background-color: #142a43;
+}
 
 
 
@@ -957,6 +1060,24 @@ h2 {
         padding-left: 20px;
         text-align: left;
     }
+
+
+    /*expert dashboard mobile view*/
+    .my_appointment {
+        margin-top: 8px;
+        font-size: 1em;
+    }
+
+    .appointment {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        padding: 15px;
+        flex: 1;
+        min-width: 250px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
 
 
 }

@@ -1,4 +1,3 @@
-<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,7 +16,7 @@
 </head>
 
 <body class="textStyling">
-    <?php require 'db.php';?>
+    <?php require 'db.php'; ?>
     <header class="headerClass">
         <div class="headerContainer">
             <div class="logo">
@@ -34,15 +33,17 @@
                 <ul>
                     <li><a href="index.php">Home</a></li>
                     <li><a href="aboutus.php">About Us</a></li>
-                    <li><a href="services.php">Services</a></li>
-                    <ul><a href="services.php">Services</a></ul>
+                    <li><a href="lowBackPain.php">Low BackPain</a></li>
+                    <li><a href="neckPain.php">Neck Pain</a></li>
+                    <li><a href="shoulderPain.php">Shoulder Pain</a></li>
+                    <li><a href="kneePain.php">Knee Pain</a></li>
                     <li><a href="healingStories.php">Healing Stories</a></li>
                     <li><a href="#">How it works</a></li>
                     <?php
                     if (!isset($_SESSION['Email']) && !isset($_SESSION['Password'])) {
                         ?>
-                       <li><a href="SignUp.php">Sign Up</a></li>
-                        <li><a href="login.php" class="login-btn">Login</a></li>
+                        <li><a href="SignUp.php">Sign Up</a></li>
+                        <li><a href="login.php" class="login-btn" style="background-color: #2D3A5C; color: #ffffff; padding: 10px 20px; border-radius: 20px; text-decoration: none; text-align: center;">Login</a></li>
                         <?php
                     } else {
                         if ($_SESSION["userType"] == "user") {
@@ -56,7 +57,7 @@
                             <?php
                         }
                         ?>
-                        <li><a href="logout.php" class="login-btn">Logout</a></li>
+                        <li><a href="logout.php" class="login-btn" style="background-color: #2D3A5C; color: #ffffff; padding: 10px 20px; border-radius: 20px; text-decoration: none; text-align: center;">Logout</a></li>
                         <?php
                     }
                     ?>
@@ -67,7 +68,17 @@
                 <ul>
                     <li><a href="index.php">Home</a></li>
                     <li><a href="aboutus.php">About Us</a></li>
-                    <li><a href="services.php">Services</a></li>
+                    <li>
+                        <a href="lowBackPain.php">Services</a>
+                        <div class="nav-dropdown">
+                            <ul>
+                                <li><a href="lowBackPain.php">Low BackPain</a></li>
+                                <li><a href="neckPain.php">Neck Pain</a></li>
+                                <li><a href="shoulderPain.php">Shoulder Pain</a></li>
+                                <li><a href="kneePain.php">Knee Pain</a></li>
+                            </ul>
+                        </div>
+                    </li>
                     <li><a href="healingStories.php">Healing Stories</a></li>
                     <li><a href="#">How it works</a></li>
                     <?php
